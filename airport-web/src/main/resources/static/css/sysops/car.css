@@ -1,0 +1,41 @@
+.page-car-bar {
+    width: 98%;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+}
+
+.page-car-body {
+    width: 98%;
+    margin: 10px auto;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+    border-radius: 2px;
+}
+
+#page-car-table {
+    height: 420px;
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+#page-car-table thead th {
+    height: 36px;
+    text-align: center;
+    background: rgba(226, 226, 226, 1);
+    color: rgba(68, 68, 68, 1);
+    font-weight: bold;
+    border-radius: 2px 2px 0px 0px;
+}
+
+#page-car-table td {
+    height: 36px;
+    width: 250px;
+    font-size: 9px;
+    text-align: center;
+    cursor: pointer;
+}

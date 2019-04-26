@@ -1,0 +1,158 @@
+.page-aew-table {
+    margin: 0 auto;
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+    border-radius: 2px;
+}
+
+.aew-level-one {
+    width: 60px;
+    line-height: 18px;
+    border-radius: 2px;
+    color: rgba(203, 58, 65, 1);
+    border: 1px solid rgba(204, 63, 70, 1);
+    text-align: center;
+}
+
+.aew-level-two {
+    width: 60px;
+    text-align: center;
+    line-height: 18px;
+    color: rgba(240, 162, 81, 1);
+    border-radius: 2px;
+    border: 1px solid rgba(240, 162, 81, 1);
+}
+
+.aew-level-three {
+    width: 60px;
+    text-align: center;
+    line-height: 18px;
+    color: #03b8cf;
+    border-radius: 2px;
+    border: 1px solid #03b8cf;
+    margin-left: calc((100% - 60px) / 2);
+}
+
+.jsgrid-cell {
+    border: none !important;
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.btn-check, .btn-check:hover, .btn-check:link, .btn-check:visited, .btn-check:active {
+    margin: 0 auto;
+    color: rgba(61, 132, 247, 1);
+    border-radius: 1px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(61, 132, 247, 0.2);
+}
+
+.aewDetail-box {
+    width: 100%;
+    height: 400px;
+}
+
+.bootbox .modal-dialog {
+    width: 800px !important;
+    border-radius: 2px !important;
+    border-top: 2px solid rgba(175, 45, 45, 1);
+
+}
+
+.aewDetail-box-title {
+    width: 100%;
+    height: 60px;
+    font-size: 26px;
+    text-align: center;
+    color: rgba(68, 68, 68, 1);
+    line-height: 60px;
+    background: rgba(226, 226, 226, 1);
+}
+
+.aewDetail-box-body-car {
+    width: 80%;
+    height: 170px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.aewDetail-box-body-car-left {
+    width: 50%;
+    height: inherit;
+}
+
+.aewDetail-box-body-car-right {
+    width: 50%;
+    height: inherit;
+}
+
+.aewDetail-box-body-aew {
+    width: 80%;
+    height: 170px;
+    margin: 0 auto;
+}
+
+.aewDetail-box-body-car-item {
+    width: 100%;
+    height: 56px;
+}
+
+.aewDetail-box-body-car-item-title {
+    height: inherit;
+    width: 100px;
+    line-height: 56px;
+    text-align: right;
+}
+
+.aewDetail-box-body-car-item-body {
+    height: inherit;
+    width: calc(100% - 100px);
+    text-align: left;
+    line-height: 56px;
+    padding-left: 20px;
+}
+
+.aewDetail-box-body-aew-item {
+    height: 56px;
+    width: 100%;
+}
+
+.aewDetail-box-body-aew-item-title {
+    width: 100px;
+    height: inherit;
+    line-height: 56px;
+    text-align: right;
+}
+
+.aewDetail-box-body-aew-item-body {
+    height: inherit;
+    width: calc(100% - 100px);
+    text-align: left;
+    line-height: 56px;
+    padding-left: 20px;
+}
+
+.bootbox .modal-footer {
+    border: none;
+    text-align: center;
+}
+
+.btn-cancel, .btn-cancel:hover, .btn-cancel:visited, .btn-cancel:active, .btn-cancel:link {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    line-height: 22px;
+    width: 88px;
+    height: 36px;
+    background: rgba(175, 45, 45, 1);
+    border-radius: 2px;
+}
+
+.btn-export, .btn-export:hover, .btn-export:visited, .btn-export:active, .btn-export:link {
+    font-size: 16px;
+    color: rgba(153, 153, 153, 1);
+    line-height: 22px;
+    width: 88px;
+    height: 36px;
+    border-radius: 2px;
+    border: 1px solid rgba(221, 221, 221, 1);
+}

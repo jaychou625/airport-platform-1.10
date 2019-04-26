@@ -1,0 +1,63 @@
+<nav class="navbar main-nav pull-left" th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+    <div class="pull-left main-nav-header">
+        <div class="main-nav-brand">
+            <img class="main-platform-logo" th:src="@{/images/logo/platform_logo.png}"/>
+        </div>
+        <div class="main-platform-name pull-left">
+            机场交通安全管理平台
+        </div>
+    </div>
+    <div class="main-nav-bar pull-right">
+        <ul class="pull-right main-nav-ul">
+            <li class="dropdown dropdown-hover main-nav-user main-nav-ul-item">
+                <a class="main-nav-user-info pull-left" data-toggle="dropdown">
+                    <div class="pull-left">
+                        <img class="img-circle main-nav-user-info-avatar-img"
+                             th:src="@{/images/avatar/{avatarName}(avatarName=${result.data.user.userAvatar + '.png'})}"/>
+                    </div>
+                    <div class="main-nav-user-info-desc pull-left">
+                        <div th:text="${result.data.user.userName}"></div>
+                        <div th:text="|${result.data.user.department.deptName} ${result.data.role.roleName}|"></div>
+                    </div>
+                    <div class="pull-left main-nav-user-info-arrows">
+                        <img th:src="@{/images/menu-icon/arrow.png}">
+                    </div>
+                </a>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        <a href="#">
+                            <img class="menu-icon" th:src="@{/images/menu-icon/pinfo.png}">　个人资料
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="menu-icon" th:src="@{/images/menu-icon/config2.png}">　系统设置
+                        </a>
+                    </li>
+                    <li class="main-nav-user-info-logstatus">
+                        <a class="main-nav-user-info-logstatus-link" href="/logout">
+                            退出系统</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="main-nav-ul-item main-nav-split"></li>
+            <li class="main-nav-ul-item main-nav-ul-item-bell">
+                <a class="main-nav-bell">
+                    <img th:src="@{/images/menu-icon/bell.png}">
+                </a>
+            </li>
+            <li class="main-nav-ul-item main-nav-split"></li>
+            <li class="main-nav-ul-item">
+                <div class="input-group">
+                    <div class="input-control search-box has-icon-right main-search-box">
+                        <input class="form-control search-input" id="main-search-box-input" placeholder="搜索..."
+                               type="search">
+                        <label class="input-control-icon-right search-icon" for="main-search-box-input">
+                            <img th:src="@{/images/menu-icon/search.png}">
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

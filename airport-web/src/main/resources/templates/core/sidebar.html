@@ -1,0 +1,29 @@
+<nav class="menu main-side-menu pull-left" data-ride="menu" th:fragment="sidebar"
+     xmlns:th="http://www.thymeleaf.org">
+    <div class="pull-left left-border-home"></div>
+    <a class="main-side-menu-home-link navbar-link" href="javascript:" onclick="loadHTML('/core/home', null)">
+        <div class="main-side-menu-home">
+            <img class="menu-icon" th:src="@{/images/menu-icon/home.png}">&nbsp;&nbsp;首页
+        </div>
+    </a>
+    <ul class="tree tree-menu" data-ride="tree" id="main-menu-ul">
+        <li class="open" th:each="m:${result.data.menus}" th:if="${m.menuLevel == 1}">
+            <div class="pull-left left-border"></div>
+            <a href="#">
+                &nbsp;&nbsp;
+                <img class="menu-icon" th:src="@{/images/menu-icon/{menuIcon}(menuIcon=${m.menuIcon + '.png'})}"/>
+                &nbsp;
+                <label th:text="${m.menuName}"></label>
+            </a>
+            <ul>
+                <li th:each="cm:${result.data.menus}" th:if="${cm.menuParentSeq == m.menuSeq and cm.menuLevel == 2}">
+                    <div class="pull-left left-border"></div>
+                    <a href="javascript:;" th:onclick="javascript:loadHTML([[${cm.menuUrl}]], null)">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <label th:text="${cm.menuName}"></label>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

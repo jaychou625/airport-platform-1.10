@@ -1,0 +1,28 @@
+#paging {
+    width: inherit;
+    margin: 0 auto;
+    height: 7%;
+}
+
+.paging-bar {
+    width: fit-content;
+    height: 100%;
+    margin: 0 auto;
+}
+
+
+.paging-bar div {
+    text-align: center;
+    float: left;
+    line-height: 35px;
+    margin-left: 30px;
+    height: 100%;
+    color: rgba(68, 68, 68, 1);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.page.active {
+    color: rgba(175, 45, 45, 1);
+}

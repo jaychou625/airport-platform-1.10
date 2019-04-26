@@ -1,0 +1,159 @@
+<div class="main-content-breadcrumb" id="main-content-breadcrumb" xmlns:th="http://www.thymeleaf.org">
+    <ol class="breadcrumb">
+        <li th:each="b:${result.data.breadcrumb}">
+            <a href="javascript:;"
+               th:onclick="javascript:loadHTML([[${b.url}]], {currentPage: 1, pageSize: 10}, null, null)"
+               th:text="${b.urlName}"></a>
+        </li>
+    </ol>
+</div>
+<div id="html-content" xmlns:th="http://www.thymeleaf.org">
+    <link th:href="@{/css/core/home.css}" rel="stylesheet"/>
+    <script th:src="@{/js/own/page-js/core/home.js}" type="text/javascript"></script>
+    <script th:inline="javascript" type="text/javascript">
+        mapInitialization("page-home-map-container", [[${result.data.zoneId}]])
+    </script>
+    <div class="page-home-top">
+        <div class="page-home-map pull-left" id="page-home-map-container"></div>
+        <div class="page-home-pie pull-right" id="page-home-pie">
+            <div class="page-home-pie-title">今日车辆监管统计</div>
+            <div class="page-home-pie-body" id="page-home-pie-body"></div>
+        </div>
+    </div>
+    <div class="page-home-center">
+        <div class="pull-left page-home-left">
+            <div class="page-home-line" id="page-home-line">
+                <div class="page-home-line-title">
+                    预警情况统计
+                    <div class="pull-right page-home-level-dot">
+                        <div class="level-one-dot"></div>
+                        <div class="level-one-name">一级预警</div>
+                        <div class="level-two-dot"></div>
+                        <div class="level-two-name">二级预警</div>
+                        <div class="level-three-dot"></div>
+                        <div class="level-three-name">三级预警</div>
+                    </div>
+                </div>
+                <div class="page-home-line-body" id="page-home-line-body"></div>
+            </div>
+
+            <div class="page-home-table">
+                <div class="page-home-table-title">今日派单接单管理 <a href="javascript:;" class="pull-right more">更多</a></div>
+                <div class="page-home-table-body">
+                    <table class="table table-hover page-home-table-content">
+                        <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>车牌</td>
+                            <td>车型</td>
+                            <td>服务的航班</td>
+                            <td>航班进/出时间</td>
+                            <td>出发时间</td>
+                            <td>到达时间</td>
+                            <td>状态</td>
+                            <td>查看路径</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>航 0622</td>
+                            <td>摆渡车</td>
+                            <td>HUZ001</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>已接单</td>
+                            <td>
+                                <a>查看路径</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>航 0622</td>
+                            <td>摆渡车</td>
+                            <td>HUZ001</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>已接单</td>
+                            <td>
+                                <a>查看路径</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>航 0622</td>
+                            <td>摆渡车</td>
+                            <td>HUZ001</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>已接单</td>
+                            <td>
+                                <a>查看路径</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>航 0622</td>
+                            <td>摆渡车</td>
+                            <td>HUZ001</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>16:20:20</td>
+                            <td>已接单</td>
+                            <td>
+                                <a>查看路径</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-home-aew pull-right">
+            <div class="page-home-aew-title">预警信息管理 <a th:onclick="javascript:loadHTML('/monitor/aew', null, 1 , 10)"
+                                                       class="pull-right more">更多</a></div>
+            <div class="page-home-aew-title-bar">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-target="#aew-one" data-toggle="tab" href="###">一级预警</a>
+                    </li>
+                    <li>
+                        <a data-target="#aew-two" data-toggle="tab" href="###">二级预警</a>
+                    </li>
+                    <li>
+                        <a data-target="#aew-three" data-toggle="tab" href="###">三级预警</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content page-home-aew-body" th:each="aew:${result.data.aewInfos}">
+                <div class="tab-pane fade active in" id="aew-one">
+                    <div class="aew-item" th:if="${aew != null && aew.aew.aewLevel == 1}">
+                        <div class="aew-item-head aew-level-one pull-left">一级预警</div>
+                        <div class="aew-item-body pull-left" th:text="${aew.aew.aewScene}"></div>
+                        <div class="aew-item-foot pull-right"
+                             th:text="${#dates.format(aew.aewInfoTime, 'yyyy-MM-dd')}"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="aew-two">
+                    <div class="aew-item" th:if="${aew != null && aew.aew.aewLevel == 2}">
+                        <div class="aew-item-head aew-level-two pull-left">二级预警</div>
+                        <div class="aew-item-body pull-left" th:text="${aew.aew.aewScene}"></div>
+                        <div class="aew-item-foot pull-right"
+                             th:text="${#dates.format(aew.aewInfoTime, 'yyyy-MM-dd')}"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="aew-three">
+                    <div class="aew-item" th:if="${aew != null && aew.aew.aewLevel == 3}">
+                        <div class="aew-item-head aew-level-three pull-left">三级预警</div>
+                        <div class="aew-item-body pull-left" th:text="${aew.aew.aewScene}"></div>
+                        <div class="aew-item-foot pull-right"
+                             th:text="${#dates.format(aew.aewInfoTime, 'yyyy-MM-dd')}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

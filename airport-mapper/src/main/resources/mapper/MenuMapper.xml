@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.MenuMapper">
+    <resultMap type="com.br.entity.access.Menu" id="menuResult">
+        <id property="menuSeq" column="menu_seq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="menuName" column="menu_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="menuLevel" column="menu_level" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="menuUrl" column="menu_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="menuIcon" column="menu_icon" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="menuCreateBy" column="menu_create_by" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="menuCreateTime" column="menu_create_time" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="menuUpdateBy" column="menu_update_by" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="menuUpdateTime" column="menu_update_time" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="menuRemark" column="menu_remark" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="menuParentSeq" column="menu_parent_seq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="findSql">
+        SELECT * FROM AP_MENU
+    </sql>
+
+    <select id="findAll" resultMap="menuResult">
+        <include refid="findSql"/>
+    </select>
+
+    <select id="find" resultMap="menuResult" parameterType="java.lang.Integer">
+        <include refid="findSql"/>
+        <where>
+            menu_seq = #{ menuSeq }
+        </where>
+    </select>
+
+    <select id="findMenusByRoleSeq" parameterType="java.lang.Integer" resultMap="menuResult">
+        SELECT m.* FROM ap_menu AS m
+          LEFT JOIN ap_role_menu AS rm ON rm.menu_seq = m.menu_seq
+          LEFT JOIN ap_role AS r ON rm.role_seq = r.role_seq
+          WHERE r.role_seq = #{ roleSeq }
+    </select>
+
+    <select id="findChildMenus" parameterType="java.lang.Integer" resultMap="menuResult">
+        <include refid="findSql"/>
+        <where>
+            menu_parent_seq = #{ menuSeq }
+        </where>
+    </select>
+
+</mapper>

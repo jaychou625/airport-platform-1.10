@@ -1,0 +1,256 @@
+.page-home-top {
+    width: 98%;
+    height: 260px;
+    margin: 0 auto;
+}
+
+
+.page-home-map {
+    width: 68%;
+    height: 260px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.page-home-pie {
+    width: 31%;
+    height: 260px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+}
+
+.page-home-pie-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.page-home-pie-body {
+    height: 220px;
+}
+
+.page-home-center {
+    width: 98%;
+    height: 520px;
+    margin: 10px auto;
+}
+
+.page-home-left {
+    width: 68%;
+    height: 520px;
+}
+
+.page-home-line {
+    height: 250px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+    border-radius: 2px;
+}
+
+.page-home-line-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.page-home-line-body {
+    height: 210px;
+}
+
+.page-home-level-dot {
+    height: 40px;
+    font-size: 12px;
+    color: rgba(102, 102, 102, 1);
+    display: flex;
+}
+
+.level-one-dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(175, 44, 48, 1);
+    border-radius: 5px;
+    margin-top: 17px;
+}
+
+.level-one-name {
+    margin-left: 5px;
+}
+
+
+.level-two-dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(250, 209, 78, 1);
+    border-radius: 5px;
+    margin-top: 17px;
+    margin-left: 10px;
+}
+
+.level-two-name {
+    margin-left: 5px;
+}
+
+
+.level-three-dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(21, 205, 150, 1);
+    border-radius: 5px;
+    margin-top: 17px;
+    margin-left: 10px;
+}
+
+.level-three-name {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+
+.page-home-table {
+    margin-top: 10px;
+    height: 250px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+    border-radius: 2px;
+}
+
+.page-home-table-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.page-home-table-body {
+    height: 210px;
+    padding: 0px 10px 0px 10px;
+}
+
+.page-home-table-content td {
+    text-align: center;
+    font-size: 9px;
+    height: 40px;
+    line-height: 24px;
+    color: rgba(102, 102, 102, 1);
+}
+
+.page-home-table-content td a {
+    color: red;
+}
+
+.more {
+    font-size: 12px;
+    font-weight: normal;
+    color: rgba(153, 153, 153, 1);
+    line-height: 40px;
+    padding: 0px 10px 0px 0px;
+}
+
+.page-home-aew {
+    width: 31%;
+    height: 510px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 5px 0px rgba(232, 232, 232, 0.53);
+    border-radius: 2px;
+}
+
+.page-home-aew-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.page-home-aew-title-bar {
+    height: 60px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.page-home-aew-title-bar .nav.nav-tabs {
+    border: none !important;
+    width: fit-content;
+    width: -moz-fit-content;
+    height: 38px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.page-home-aew-title-bar .nav.nav-tabs li {
+    margin-top: 11px;
+}
+
+.page-home-aew-title-bar .nav.nav-tabs li.active a {
+    background: rgba(245, 246, 250, 1) !important;
+}
+
+.page-home-aew-title-bar .nav.nav-tabs li a {
+    border-radius: 0px;
+    border: 1px solid rgba(229, 230, 235, 1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.page-home-aew-body .tab-pane {
+    padding: 10px 0px 10px 10px;
+    height: 410px;
+}
+
+.aew-item {
+    height: 40px;
+    padding: 9px 0px 9px 0px;
+}
+
+.aew-level-one {
+    width: 60px;
+    line-height: 18px;
+    border-radius: 2px;
+    color: rgba(203, 58, 65, 1);
+    border: 1px solid rgba(204, 63, 70, 1);
+    text-align: center;
+}
+
+.aew-level-two {
+    width: 60px;
+    text-align: center;
+    line-height: 18px;
+    color: rgba(240, 162, 81, 1);
+    border-radius: 2px;
+    border: 1px solid rgba(240, 162, 81, 1);
+}
+
+.aew-level-three {
+    width: 60px;
+    text-align: center;
+    line-height: 18px;
+    color: #03b8cf;
+    border-radius: 2px;
+    border: 1px solid #03b8cf;
+}
+
+.aew-item-body {
+    width: calc(100% - 65px - 30%);
+    height: 22px;
+    line-height: 20px;
+    font-size: 12px;
+    margin-left: 5px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.aew-item-foot {
+    width: 30%;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    color: rgba(153, 153, 153, 1);
+}
+
