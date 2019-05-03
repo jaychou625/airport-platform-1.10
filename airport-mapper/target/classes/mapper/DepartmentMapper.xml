@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.br.mapper.DepartmentMapper">
-    <resultMap type="com.br.entity.user.Department" id="deptResult">
+    <resultMap type="com.br.entity.core.Department" id="deptResult">
         <id property="deptSeq" column="dept_seq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result property="deptName" column="dept_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="deptStatus" column="dept_status" javaType="java.lang.Integer" jdbcType="TINYINT"/>
@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="deptCreateTime" column="dept_create_time" javaType="java.util.Date" jdbcType="DATE"/>
         <result property="deptUpdateBy" column="dept_update_by" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="deptUpdateTime" column="dept_update_time" javaType="java.util.Date" jdbcType="DATE"/>
-        <association property="deptParentDepartment" column="dept_parent_seq" javaType="com.br.entity.user.Department" select="find"/>
+        <association property="deptParentDepartment" column="dept_parent_seq" javaType="com.br.entity.core.Department" select="find"/>
     </resultMap>
 
     <sql id="findSql">

@@ -443,7 +443,7 @@ var ClipboardAction = (function () {
 
     /**
      * Only removes the fake element after another click event, that way
-     * a user can hit `Ctrl+C` to copy because selection still exists.
+     * a core can hit `Ctrl+C` to copy because selection still exists.
      */
 
     ClipboardAction.prototype.removeFake = function removeFake() {

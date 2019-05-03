@@ -11,7 +11,6 @@ function loadAewInfoTableData(currentPage, pageSize) {
         let pageInfo = JSON.parse(result.data).data.pageInfo
         /*------------------------- 构建表格 ----------------------------*/
         $("#page-aew-table").jsGrid({
-            height: "78%",
             width: "98%",
             data: pageInfo.list,
             fields: [

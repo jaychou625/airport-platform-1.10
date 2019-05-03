@@ -7,7 +7,7 @@ import org.springframework.util.DigestUtils;
  * @Author Zero
  * @Date 2019 02 24
  */
-public class MD5Utils {
+public class CrypUtils {
 
     /**
      * 将源字符串转换为MD5
@@ -21,7 +21,7 @@ public class MD5Utils {
 
     public static void main(String[] args) {
         String str = "Datasyx2019042520190425103820syx.call.2019wgss.webcall.2019";
-        System.out.println(new MD5Utils().toMD5(str));
+        System.out.println(new CrypUtils().toMD5(str));
     }
 
 

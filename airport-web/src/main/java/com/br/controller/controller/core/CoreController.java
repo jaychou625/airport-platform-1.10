@@ -3,25 +3,22 @@ package com.br.controller.controller.core;
 import com.br.controller.controller.BaseController;
 import com.br.entity.access.Menu;
 import com.br.entity.access.Role;
-import com.br.entity.user.User;
+import com.br.entity.core.User;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
 import com.br.service.constant.RequestRouteConstant;
 import com.br.service.constant.ViewConstant;
 import com.br.service.enumeration.CommonEnumeration;
-import com.br.service.enumeration.ShiroEnumeration;
 import com.br.service.service.traffic.AewService;
 import com.br.service.service.user.MenuService;
 import com.br.service.service.user.RoleService;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
+import com.br.service.utils.CrypUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -45,30 +42,19 @@ public class CoreController extends BaseController {
     @Autowired
     private AewService aewService;
 
+    // 密码工具类
+    @Autowired
+    private CrypUtils crypUtils;
+
     /**
      * 登录视图
      *
      * @return 视图
      */
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_LOGIN)
-    public String login(HttpServletRequest request, Model model) {
-        Result result = new Result();
-        String exception = (String) request.getAttribute("shiroLoginFailure");
-        if (exception != null) {
-            if (IncorrectCredentialsException.class.getName().equals(exception)) {
-                result.setCode(ShiroEnumeration.USERNAME_OR_PWD_ERROR.getCode());
-                result.setStatus(ShiroEnumeration.USERNAME_OR_PWD_ERROR.getStatus());
-                result.getData().put("error", ShiroEnumeration.USERNAME_OR_PWD_ERROR.getMessage());
-            } else if (UnknownAccountException.class.getName().equals(exception)) {
-                result.setCode(ShiroEnumeration.UNKNOWN_USER.getCode());
-                result.setStatus(ShiroEnumeration.UNKNOWN_USER.getStatus());
-                result.getData().put("error", ShiroEnumeration.UNKNOWN_USER.getMessage());
-            }
-        }
-        model.addAttribute("result", result);
+    public String login() {
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_LOGIN;
     }
-
 
     /**
      * 主页
@@ -105,4 +91,16 @@ public class CoreController extends BaseController {
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_HOME;
     }
 
+    /**
+     * 未授权页面
+     *
+     * @return 视图
+     */
+    @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_UNAUTHED, method = RequestMethod.GET)
+    public String unAuthPage() {
+        System.out.println("未授权");
+        return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_UNAUTHED;
+    }
+
 }
+

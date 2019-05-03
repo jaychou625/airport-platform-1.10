@@ -1,7 +1,6 @@
 package com.br.service.service.user;
 
 import com.br.entity.access.Menu;
-import com.br.entity.access.Role;
 import com.br.mapper.MenuMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -37,14 +36,14 @@ public class MenuService {
     /**
      * 获取所有菜单 By 角色集合
      *
-     * @param roles
+     * @param rolesSeq 角色序号集合
      * @return List<Menu>
      */
-    public List<Menu> getMenusByRoleSeq(List<Role> roles) {
-        if (roles != null && roles.size() > 0) {
+    public List<Menu> getMenusByRoleSeq(List<Integer> rolesSeq) {
+        if (rolesSeq != null && rolesSeq.size() > 0) {
             List<Menu> allMenus = new ArrayList<>();
-            for (Role role : roles) {
-                List<Menu> menus = this.menuMapper.findMenusByRoleSeq(role.getRoleSeq());
+            for (Integer roleSeq : rolesSeq) {
+                List<Menu> menus = this.menuMapper.findMenusByRoleSeq(roleSeq);
                 if (menus != null && menus.size() > 0) {
                     for (Menu menu : menus) {
                         allMenus.add(menu);

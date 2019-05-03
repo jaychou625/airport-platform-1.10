@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.br.mapper.UserMapper">
-    <resultMap type="com.br.entity.user.User" id="userAssemblyResult">
+    <resultMap type="com.br.entity.core.User" id="userAssemblyResult">
         <id property="userSeq" column="user_seq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result property="userName" column="user_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="userPwd" column="user_pwd" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="userLastIp" column="user_last_ip" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="userUpdateBy" column="user_update_by" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="userUpdateDate" column="user_update_time" javaType="java.util.Date" jdbcType="DATE"/>
-        <association property="department" javaType="com.br.entity.user.Department" column="user_dept_seq" select="com.br.mapper.DepartmentMapper.find"/>
+        <association property="department" javaType="com.br.entity.core.Department" column="user_dept_seq" select="com.br.mapper.DepartmentMapper.find"/>
     </resultMap>
 
     <sql id="findSql">

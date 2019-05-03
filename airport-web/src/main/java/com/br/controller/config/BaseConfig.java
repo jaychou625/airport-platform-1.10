@@ -1,6 +1,7 @@
 package com.br.controller.config;
 
 import com.br.service.utils.ADSBUtils;
+import com.br.service.utils.CrypUtils;
 import com.br.service.utils.FileUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ public class BaseConfig {
     /**
      * 文件工具类
      *
-     * @return
+     * @return FileUtils
      */
     @Bean
     public FileUtils fileUtils() {
@@ -27,11 +28,21 @@ public class BaseConfig {
     /**
      * ADS-B工具类
      *
-     * @return
+     * @return ADSBUtils
      */
     @Bean
     public ADSBUtils adsbUtils() {
         return new ADSBUtils();
+    }
+
+    /**
+     * 密码工具类
+     *
+     * @return CrypUtils
+     */
+    @Bean
+    public CrypUtils crypUtils() {
+        return new CrypUtils();
     }
 
 

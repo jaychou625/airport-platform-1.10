@@ -14,6 +14,7 @@ import com.br.service.service.traffic.TrafficTaskService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.route.imp.PositionPoint;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,7 @@ public class MonitorController {
      * @param model 响应结果集
      * @return 视图
      */
+    @RequiresPermissions(RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW)
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW, method = RequestMethod.GET)
     public String aewPage(Model model) {
         model.addAttribute("breadcrumb", new BreadCrumb[]{new BreadCrumb("首页", RequestRouteConstant.REQUEST_ROUTE_HOME), new BreadCrumb("预警监管", RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW)});
@@ -73,11 +75,12 @@ public class MonitorController {
     }
 
     /**
-     * 机场地图视图
+     * 交通监管
      *
      * @param model 响应结果集
      * @return 视图
      */
+    @RequiresPermissions({RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC})
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC, method = RequestMethod.GET)
     public String trafficPage(Model model) {
         model.addAttribute("zoneId", "4602000001");

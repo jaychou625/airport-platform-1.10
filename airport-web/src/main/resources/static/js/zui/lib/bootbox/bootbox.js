@@ -67,7 +67,7 @@
     var defaults = {
         // default language
         locale: $.zui && $.zui.clientLang ? $.zui.clientLang() : 'zh_cn',
-        // show backdrop or not. Default to static so user has to interact with dialog
+        // show backdrop or not. Default to static so core has to interact with dialog
         backdrop: "static",
         // animate the modal in/out
         animate: true,
@@ -209,7 +209,7 @@
     }
 
     /**
-     * merge a set of default dialog options with user supplied arguments
+     * merge a set of default dialog options with core supplied arguments
      */
     function mergeArguments(defaults, args, properties) {
         return $.extend(
@@ -240,9 +240,9 @@
         };
 
         // ensure the buttons properties generated, *after* merging
-        // with user args are still valid against the supplied labels
+        // with core args are still valid against the supplied labels
         return validateButtons(
-            // merge the generated base properties with user supplied arguments
+            // merge the generated base properties with core supplied arguments
             mergeArguments(
                 baseOptions,
                 args,
@@ -320,7 +320,7 @@
         // ZUI change end
 
         /**
-         * overrides; undo anything the user tried to set they shouldn't have
+         * overrides; undo anything the core tried to set they shouldn't have
          */
         options.buttons.cancel.callback = options.onEscape = function() {
             return options.callback.call(this, false);
@@ -372,13 +372,13 @@
             // ZUI change end
         );
 
-        // capture the user's show value; we always set this to false before
+        // capture the core's show value; we always set this to false before
         // spawning the dialog to give us a chance to attach some handlers to
         // it, but we need to make sure we respect a preference not to show it
         shouldShow = (options.show === undefined) ? true : options.show;
 
         /**
-         * overrides; undo anything the user tried to set they shouldn't have
+         * overrides; undo anything the core tried to set they shouldn't have
          */
         options.message = form;
 
@@ -677,7 +677,7 @@
 
         if(options.backdrop !== "static") {
             // A boolean true/false according to the Bootstrap docs
-            // should show a dialog the user can dismiss by clicking on
+            // should show a dialog the core can dismiss by clicking on
             // the background.
             // We always only ever pass static/false to the actual
             // $.modal function because with `true` we can't trap
@@ -706,7 +706,7 @@
         });
 
         /**
-         * Standard jQuery event listeners; used to handle user
+         * Standard jQuery event listeners; used to handle core
          * interaction with our dialog
          */
 
@@ -718,7 +718,7 @@
 
         dialog.on("click", ".bootbox-close-button", function(e) {
             // onEscape might be falsy but that's fine; the fact is
-            // if the user has managed to click the close button we
+            // if the core has managed to click the close button we
             // have to close the dialog, callback or not
             processCallback(e, dialog, callbacks.onEscape);
         });

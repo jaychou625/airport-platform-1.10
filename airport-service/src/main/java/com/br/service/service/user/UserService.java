@@ -1,6 +1,6 @@
 package com.br.service.service.user;
 
-import com.br.entity.user.User;
+import com.br.entity.core.User;
 import com.br.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 

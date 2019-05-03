@@ -10,4 +10,21 @@ function checkForm() {
         return false;
     }
     return true
+
+}
+
+function login() {
+    if (checkForm()) {
+        let formValue = $("#login-form").serialize()
+        call("post", "/login", formValue).done(function (result) {
+            result = JSON.parse(result.data)
+            if (result.status === 703) {
+                location.href = "/main"
+            } else {
+                $("#login-info-label").text(result.data.error)
+            }
+        }).catch(function (err) {
+            console.log(err)
+        })
+    }
 }

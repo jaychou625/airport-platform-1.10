@@ -1,4 +1,4 @@
-package com.br.entity.user;
+package com.br.entity.core;
 
 import lombok.*;
 

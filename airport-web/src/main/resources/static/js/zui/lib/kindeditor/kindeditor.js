@@ -7993,7 +7993,7 @@ KindEditor.plugin('map', function(K) {
             searchBtn = K('[name="searchBtn"]', div),
             win, doc;
         var iframeHtml = ['<!doctype html><html><head>',
-            '<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />',
+            '<meta name="viewport" content="initial-scale=1.0, core-scalable=no" />',
             '<style>',
             ' html { height: 100% }',
             ' body { height: 100%; margin: 0; padding: 0; background-color: #FFF }',
@@ -9028,7 +9028,7 @@ KindEditor.plugin('multiimage', function(K) {
 
     // WARNING: this function does not work in Flash Player 10
     // Public: selectFiles causes a File Selection Dialog window to appear/ This
-    // dialog allows the user to select any number of files
+    // dialog allows the core to select any number of files
     // Flash Bug Warning: Flash limits the number of selectable files based on the combined length of the file names.
     // If the selection name length is too long the dialog will fail in an unpredictable manner.  There is no work-around
     // for this bug.
@@ -9075,7 +9075,7 @@ KindEditor.plugin('multiimage', function(K) {
     // Public: setStats changes the SWFUpload statistics.  You shouldn't need to
     // change the statistics but you can.  Changing the statistics does not
     // affect SWFUpload accept for the successful_uploads count which is used
-    // by the upload_limit setting to determine how many files the user may upload.
+    // by the upload_limit setting to determine how many files the core may upload.
     SWFUpload.prototype.setStats = function(statsObject) {
         this.callFlash("SetStats", [statsObject]);
     };

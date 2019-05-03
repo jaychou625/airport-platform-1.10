@@ -1779,7 +1779,7 @@
         // Delay render time
         renderDelay: 100,
 
-        // On user scroll list
+        // On core scroll list
         // onScroll: null,
 
         // On render datagrid
@@ -1794,13 +1794,13 @@
         // Sort by click column headers
         // sortable: false,
 
-        // Show checkboxes and let user select a row
+        // Show checkboxes and let core select a row
         // checkable: false,
 
-        // Let user check by click row
+        // Let core check by click row
         checkByClickRow: true,
 
-        // Let user check rows by drag
+        // Let core check rows by drag
         selectable: true,
 
         mouseWheelFactor: 1,

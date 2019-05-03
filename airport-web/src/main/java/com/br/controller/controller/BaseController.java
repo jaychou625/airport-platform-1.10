@@ -1,6 +1,6 @@
 package com.br.controller.controller;
 
-import com.br.entity.user.User;
+import com.br.entity.core.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -12,14 +12,23 @@ import org.apache.shiro.subject.Subject;
  */
 public class BaseController {
 
+
+    /**
+     * 获取当前Subject对象
+     *
+     * @return Subject
+     */
+    public Subject currentSubject() {
+        return SecurityUtils.getSubject();
+    }
+
     /**
      * 获取当前交互用户
      *
-     * @return
+     * @return User
      */
     public User currentUser() {
-        Subject subject = SecurityUtils.getSubject();
-        return (User) subject.getPrincipal();
+        return (User) this.currentSubject().getPrincipal();
     }
 
 }

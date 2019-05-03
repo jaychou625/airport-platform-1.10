@@ -1,12 +1,11 @@
-// result object
-let result = {
-    status: "",
-    data: "",
-    error: ""
-}
-
 // ajax method
 function call(method, url, params) {
+    // result object
+    let result =  {
+        status: "",
+        data: "",
+        error: ""
+    }
     let def = $.Deferred()
     $.ajax(url, {
         type: method,

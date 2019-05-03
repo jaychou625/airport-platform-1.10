@@ -6,6 +6,7 @@ import com.br.service.shiro.filter.LoginFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.AbstractSessionManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -15,6 +16,7 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,7 +36,8 @@ public class ShiroConfig {
 
     /**
      * Shiro 记住我Cookie
-     * @return rememberMeCookie
+     *
+     * @return SimpleCookie
      */
     @Bean
     public SimpleCookie rememberMeCookie() {
@@ -47,27 +50,15 @@ public class ShiroConfig {
 
     /**
      * Shiro 记住我管理
+     *
      * @return CookieRememberMeManager
      */
     @Bean
-    public CookieRememberMeManager cookieRememberMeManager(){
+    public CookieRememberMeManager cookieRememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
         cookieRememberMeManager.setCipherKey(Base64.decode("IonwzK5Iytvy029yX82vDw=="));
         return cookieRememberMeManager;
-    }
-
-    /**
-     * Shiro 凭证匹配器
-     *
-     * @return
-     */
-    @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");
-        hashedCredentialsMatcher.setHashIterations(1);
-        return hashedCredentialsMatcher;
     }
 
     /**
@@ -80,6 +71,19 @@ public class ShiroConfig {
         APShiroRealm apShiroRealm = new APShiroRealm();
         apShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return apShiroRealm;
+    }
+
+    /**
+     * 密码转换器
+     *
+     * @return HashedCredentialsMatcher
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        hashedCredentialsMatcher.setHashIterations(1);
+        return hashedCredentialsMatcher;
     }
 
 
@@ -96,12 +100,12 @@ public class ShiroConfig {
     /**
      * WebSessionManager 实例
      *
-     * @return WebSessionManager
+     * @return DefaultWebSessionManager
      */
     @Bean
     public DefaultWebSessionManager webSessionManager() {
         DefaultWebSessionManager webSessionManager = new DefaultWebSessionManager();
-        webSessionManager.setGlobalSessionTimeout(1000);
+        webSessionManager.setGlobalSessionTimeout(AbstractSessionManager.DEFAULT_GLOBAL_SESSION_TIMEOUT);
         webSessionManager.setSessionDAO(memorySessionDAO());
         webSessionManager.setSessionIdUrlRewritingEnabled(false);
         return webSessionManager;
@@ -110,7 +114,7 @@ public class ShiroConfig {
     /**
      * SecurityManager 实例
      *
-     * @return webSecurityManager
+     * @return SecurityManager
      */
     @Bean
     public SecurityManager securityManager() {
@@ -137,17 +141,22 @@ public class ShiroConfig {
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_JS, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_IMAGES, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_WEBSOCKET, "anon");
+        filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MAP_RESOURCES, "anon");
         /* 测试终端 start */
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_FIND_CAR, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_TRAFFIC_INFO, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_TRAFFIC_TASK, "anon");
         /* 测试终端 end */
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_LOGOUT, "logout");
-        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_UNAUTHED, "anon");
+        filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MAIN, "user");
+        filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_HOME, "user");
+        filterChainDefinitionMap.put("/*", "authc");
         shiroFilterFactoryBean.setFilters(filterMap);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         shiroFilterFactoryBean.setLoginUrl(RequestRouteConstant.REQUEST_ROUTE_LOGIN);
         shiroFilterFactoryBean.setSuccessUrl(RequestRouteConstant.REQUEST_ROUTE_MAIN);
+        shiroFilterFactoryBean.setUnauthorizedUrl(RequestRouteConstant.REQUEST_ROUTE_UNAUTHED);
         return shiroFilterFactoryBean;
     }
 
@@ -155,7 +164,7 @@ public class ShiroConfig {
      * 开启 Shrio AOP 注解支持
      *
      * @param securityManager
-     * @return authorizationAttributeSourceAdvisor
+     * @return AuthorizationAttributeSourceAdvisor
      */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
@@ -165,9 +174,21 @@ public class ShiroConfig {
     }
 
     /**
+     * 开启Shiro 权限注解
+     *
+     * @return DefaultAdvisorAutoProxyCreator
+     */
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
+    }
+
+    /**
      * Shiro 生命周期
      *
-     * @return
+     * @return LifecycleBeanPostProcessor
      */
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {

@@ -15,7 +15,7 @@ $(function () {
         trickleSpeed: 100,
     })
 
-    loadHTML("/core/home", null, null, null)
+    loadHTML("/home", null, null, null)
 
     webSocketInitialization()
 })

@@ -7,8 +7,6 @@ import com.br.service.constant.RequestRouteConstant;
 import com.br.service.constant.ViewConstant;
 import com.br.service.enumeration.CommonEnumeration;
 import com.br.service.service.traffic.CarService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,28 +36,12 @@ public class SysopsController {
      */
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR, method = RequestMethod.GET)
     public String carPage(Model model) {
-        model.addAttribute("breadcrumb", new BreadCrumb[]{new BreadCrumb("首页", RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR), new BreadCrumb("车辆基本信息", RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR)});
-        return ViewConstant.VIEW_DIR_SYSOPS + ViewConstant.VIEW_FILE_SYSOPS_CAR;
-    }
-
-    /**
-     * 车辆数据集合
-     *
-     * @param model 响应结果集
-     * @param currentPage 当前页
-     * @param pageSize 页面数量
-     * @return Result
-     */
-    @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR_LIST, method = RequestMethod.GET)
-    @ResponseBody
-    public Result carList(Model model, @RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize) {
         Result result = new Result();
-        PageHelper.startPage(currentPage, pageSize, true);
-        PageInfo pageInfo = new PageInfo(this.carService.findAll());
         result.setStatus(CommonEnumeration.SUCCESS.getStatus());
         result.setCode(CommonEnumeration.SUCCESS.getCode());
-        result.getData().put("pageInfo", pageInfo);
-        return result;
+        result.getData().put("breadcrumb", new BreadCrumb[]{new BreadCrumb("首页", RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR), new BreadCrumb("车辆基本信息", RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR)});
+        model.addAttribute("result", result);
+        return ViewConstant.VIEW_DIR_SYSOPS + ViewConstant.VIEW_FILE_SYSOPS_CAR;
     }
 
     /**

@@ -11,6 +11,9 @@ spring:
     encoding: UTF-8
     prefix: classpath:/templates/
     mode: HTML
+    servlet:
+      content-type: text/html
+    suffix: .html
   resources:
     chain:
       strategy:

@@ -1,7 +1,7 @@
 package com.br.controller.controller.user;
 
 import com.br.service.service.user.UserService;
-import com.br.entity.user.User;
+import com.br.entity.core.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

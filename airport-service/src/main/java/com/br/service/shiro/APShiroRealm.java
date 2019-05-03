@@ -2,7 +2,7 @@ package com.br.service.shiro;
 
 import com.br.entity.access.Menu;
 import com.br.entity.access.Role;
-import com.br.entity.user.User;
+import com.br.entity.core.User;
 import com.br.service.service.user.MenuService;
 import com.br.service.service.user.RoleService;
 import com.br.service.service.user.UserService;
@@ -14,9 +14,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Shiro 域
@@ -47,19 +45,14 @@ public class APShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
         User user = (User) collection.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        List<Role> roles_temp = new ArrayList<>();
-        Set<String> roles = new HashSet<>();
-        Set<String> menus = new HashSet<>();
+        List<Integer> rolesSeq = new ArrayList<>();
         for (Role role : this.roleService.findRolesByUserSeq(user.getUserSeq())) {
-            roles.add(role.getRoleMark());
-            roles_temp.add(role);
+            rolesSeq.add(role.getRoleSeq());
+            authorizationInfo.addRole(role.getRoleMark());
         }
-        for (Menu menu : this.menuService.getMenusByRoleSeq(roles_temp)) {
-            menus.add(menu.getMenuUrl());
+        for (Menu menu : this.menuService.getMenusByRoleSeq(rolesSeq)) {
+            authorizationInfo.addStringPermission(menu.getMenuUrl());
         }
-        authorizationInfo.setRoles(roles);
-        authorizationInfo.setStringPermissions(menus);
-        System.out.println("enter");
         return authorizationInfo;
     }
 
@@ -71,7 +64,7 @@ public class APShiroRealm extends AuthorizingRealm {
         if(user == null) {
             throw new UnknownAccountException();
         }
-        return new SimpleAuthenticationInfo(user, user.getUserPwd(), this.getClass().getName());
+        return new SimpleAuthenticationInfo(user, user.getUserPwd(), this.getName());
     }
 
 }

@@ -622,7 +622,7 @@ INSERT INTO `ap_menu` VALUES (12, '保障信息', 2, '/sysops/safeguard', 'none'
 INSERT INTO `ap_menu` VALUES (13, '历史信息', 2, '/sysops/history', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 8);
 INSERT INTO `ap_menu` VALUES (14, '硬件信息', 2, '/sysops/hardware', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 8);
 INSERT INTO `ap_menu` VALUES (15, '系统管理', 1, '/sysconfig', 'config', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 0);
-INSERT INTO `ap_menu` VALUES (16, '用户管理', 2, '/sysconfig/user', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 15);
+INSERT INTO `ap_menu` VALUES (16, '用户管理', 2, '/sysconfig/core', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 15);
 INSERT INTO `ap_menu` VALUES (17, '角色管理', 2, '/sysconfig/role', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 15);
 INSERT INTO `ap_menu` VALUES (18, '菜单管理', 2, '/sysconfig/menu', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 15);
 INSERT INTO `ap_menu` VALUES (19, '日志管理', 2, '/sysconfig/log', 'none', '1', '0000-00-00 00:00:00', 00000000000, '0000-00-00 00:00:00', '', 15);

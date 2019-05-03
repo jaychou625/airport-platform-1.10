@@ -29,6 +29,4 @@ public class RoleService {
     public List<Role> findRolesByUserSeq(Integer userSeq) {
         return this.roleMapper.findRolesByUserSeq(userSeq);
     }
-
-
 }
