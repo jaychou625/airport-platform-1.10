@@ -1,6 +1,6 @@
-// 地图初始化
+/*------------------------- 地图初始化 ----------------------------*/
 function mapInitialization(target, zoneId) {
-    // 机场Id
+    /*------------------------- 机场编号 ----------------------------*/
     mapConfig.zoneId = zoneId;
     // 创建视图
     if (view === undefined || view === null) {
@@ -15,12 +15,12 @@ function mapInitialization(target, zoneId) {
             extent: mapConfig.extent
         })
     }
-    // 地图实例化
+    /*------------------------- 地图实例化 ----------------------------*/
     map = new ol.Map({
         target: target,
         view: view
     })
-    // 创建瓦片图层
+    /*------------------------- 瓦片图层 ----------------------------*/
     if (tileLayer === undefined || tileLayer === null) {
         tileLayer = new ol.layer.Tile({
             source: new ol.source.TileImage({
@@ -35,21 +35,18 @@ function mapInitialization(target, zoneId) {
             })
         })
     }
-    // 添加瓦片图层到地图
     layerPlus(tileLayer)
-    // 创建矢量图层
+    /*------------------------- 适量图层 ----------------------------*/
     if (vectorLayer === undefined || vectorLayer === null) {
         vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector()
         })
     }
-    // 添加矢量图层到地图
     layerPlus(vectorLayer)
-    // 添加控件
     controlPlus(new ol.control.ScaleLine())
 }
 
-// 瓦片路径计算
+/*------------------------- 瓦片算法 ----------------------------*/
 function tileUrl(tileCoords) {
     if (!tileCoords) return ""
     let z = tileCoords[0]
@@ -81,7 +78,6 @@ function tileUrl(tileCoords) {
         yStr = "0" + yStr
     }
     z = Math.pow(2, z)
-    // 瓦片路径
     let tileUrl = mapConfig.url + mapConfig.zoneId + "/" + z + "/" + z + yStr + xStr + ".png"
     return tileUrl
 }

@@ -17,7 +17,7 @@
     </resultMap>
 
     <select id="findAll" resultMap="aewInfoResultMap">
-        SELECT * FROM AP_AEW_INFO
+        SELECT * FROM AP_AEW_INFO ORDER BY aew_info_time DESC
     </select>
 
     <select id="find" resultMap="aewInfoResultMap" parameterType="java.lang.Integer">

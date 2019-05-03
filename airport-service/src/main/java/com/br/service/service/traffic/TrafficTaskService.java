@@ -1,6 +1,7 @@
 package com.br.service.service.traffic;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.br.entity.map.AewInfo;
 import com.br.entity.map.TrafficTask;
 import com.br.entity.websocket.WSMessage;
@@ -9,13 +10,20 @@ import com.br.service.constant.WSMessageConstant;
 import com.br.service.service.map.MapService;
 import com.br.service.service.redis.RedisService;
 import com.br.service.service.websocket.WSService;
+import com.br.service.utils.CrypUtils;
 import com.route.broadcast.ConflictPoint;
 import com.route.broadcast.PositionNotice;
 import com.route.imp.NavPoint;
 import com.route.imp.PositionPoint;
 import com.route.imp.nav.Distance;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -49,6 +57,11 @@ public class TrafficTaskService {
     // 预警信息 Mapper
     @Autowired
     private AewService aewService;
+
+    // 密码工具类
+    @Autowired
+    private CrypUtils crypUtils;
+
 
     /**
      * 记录任务
@@ -249,6 +262,28 @@ public class TrafficTaskService {
             navPoint.endPoint.iLatitude = trafficTask.getTargetOfPoint()[1].doubleValue();
         }
         return navPoint;
+    }
+
+
+    /*****************************获取站坪数据*****************************/
+    public void getApronData(){
+        Date date = new Date();
+        SimpleDateFormat sdf_date = new SimpleDateFormat("yyyyMMdd");
+        String dateString = sdf_date.format(date);
+        SimpleDateFormat sdf_datetime = new SimpleDateFormat("yyyyMMddHHmmss");
+        String datetimeString = sdf_datetime.format(date);
+        String str = "Datasyx" + dateString + datetimeString + "syx.call.2019wgss.webcall.2019";
+        String sign = this.crypUtils.toMD5(str);
+        String url = "http://10.2.135.122:8091/CallHandlers/WgssHandler.ashx?MethodName=Data&CallUserName=syx&PlanDate=" + dateString + "&DateTimeToken=" + datetimeString + "&Sign=" + sign;
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+        try {
+            Response response = client.newCall(request).execute();
+            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
+            // 格式化JSON数据
+        }catch (IOException ioe){
+            ioe.printStackTrace();
+        }
     }
 
 

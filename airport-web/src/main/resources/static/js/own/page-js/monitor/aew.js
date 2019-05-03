@@ -6,9 +6,9 @@ function loadAewInfoTableData(currentPage, pageSize) {
         pageSize: pageSize
     }
     /*------------------------- Ajax请求数据 ----------------------------*/
-    call("get", "/monitor/aew/list", params).done(function (result) {
+    call("get", "/monitor/aew/list", params, "text").done(function (result) {
         /*------------------------- 响应数据 ----------------------------*/
-        let pageInfo = JSON.parse(result.data).data.pageInfo
+        let pageInfo = result.data.data.pageInfo
         /*------------------------- 构建表格 ----------------------------*/
         $("#page-aew-table").jsGrid({
             width: "98%",

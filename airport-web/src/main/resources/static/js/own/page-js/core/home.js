@@ -8,7 +8,28 @@ $(function () {
             preventDefault: true
         }
     })
+
     $("#aew-one").mCustomScrollbar({
+        axis: "y",
+        theme: "dark",
+        autoHideScrollbar: true,
+        autoExpandScrollbar: true,
+        mouseWheel: {
+            preventDefault: true
+        }
+    })
+
+    $("#aew-two").mCustomScrollbar({
+        axis: "y",
+        theme: "dark",
+        autoHideScrollbar: true,
+        autoExpandScrollbar: true,
+        mouseWheel: {
+            preventDefault: true
+        }
+    })
+
+    $("#aew-three").mCustomScrollbar({
         axis: "y",
         theme: "dark",
         autoHideScrollbar: true,

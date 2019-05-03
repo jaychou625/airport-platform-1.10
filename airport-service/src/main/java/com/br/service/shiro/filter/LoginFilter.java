@@ -27,12 +27,13 @@ public class LoginFilter extends FormAuthenticationFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        Subject subject = this.getSubject(servletRequest, response);
-        if (!isLoginRequest(servletRequest, response) && !subject.isAuthenticated()) {
+        Subject subject = this.getSubject(request, response);
+        if (!subject.isAuthenticated()) {
             response.setHeader("session-status", "timeout");
         }
-        return super.onAccessDenied(servletRequest, response);
+        return super.onAccessDenied(request, response);
     }
 
     @Override
@@ -43,9 +44,7 @@ public class LoginFilter extends FormAuthenticationFilter {
         Result result = new Result();
         result.setStatus(ShiroEnumeration.LOGIN_SUCCESS.getStatus());
         result.setCode(ShiroEnumeration.LOGIN_SUCCESS.getCode());
-        result.getData().put("error", ShiroEnumeration.LOGIN_SUCCESS.getMessage());
         request.setAttribute("result", result);
-
         /*-------------------------------Ajax 请求登录成功 ------------------------------------*/
         if (isAjaxRequest(request)) {
             PrintWriter out = response.getWriter();
@@ -113,12 +112,3 @@ public class LoginFilter extends FormAuthenticationFilter {
         return false;
     }
 }
-
-/*
-
-  if (!isLoginRequest(request, response)) {
-          System.out.println("onAccessDenide is Authed: " + subject.isAuthenticated());
-          if (!subject.isAuthenticated()) {
-          response.setHeader("session-status", "timeout");
-          }
-          }*/

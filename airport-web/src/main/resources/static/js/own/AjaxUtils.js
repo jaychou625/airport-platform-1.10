@@ -1,6 +1,6 @@
-// ajax method
+/*------------------------- ajax请求 ----------------------------*/
 function call(method, url, params) {
-    // result object
+    // 结果对象
     let result =  {
         status: "",
         data: "",
@@ -12,7 +12,6 @@ function call(method, url, params) {
         timeout: 6000,
         cache: false,
         data: params,
-        dataType: "text",
         contentType: "application/x-www-form-urlencoded",
         ifModified: true,
         beforeSend: function (xmr) {
@@ -23,7 +22,6 @@ function call(method, url, params) {
             return data
         },
         success: function (data, status) {
-            console.log(data)
             result.status = status
             result.data = data
             result.error = ""

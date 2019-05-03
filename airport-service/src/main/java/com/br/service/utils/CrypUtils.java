@@ -2,6 +2,9 @@ package com.br.service.utils;
 
 import org.springframework.util.DigestUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * MD5工具类
  * @Author Zero
@@ -20,8 +23,15 @@ public class CrypUtils {
 
 
     public static void main(String[] args) {
-        String str = "Datasyx2019042520190425103820syx.call.2019wgss.webcall.2019";
-        System.out.println(new CrypUtils().toMD5(str));
+/*        Date date = new Date();
+        SimpleDateFormat sdf_date = new SimpleDateFormat("yyyyMMdd");
+        String dateString = sdf_date.format(date);
+        SimpleDateFormat sdf_datetime = new SimpleDateFormat("yyyyMMddHHmmss");
+        String datetimeString = sdf_datetime.format(date);
+        String str = "Datasyx" + dateString + datetimeString + "syx.call.2019wgss.webcall.2019";
+        String sign = new CrypUtils().toMD5(str);
+        String url = "http://10.2.135.122:8091/CallHandlers/WgssHandler.ashx?MethodName=Data&CallUserName=syx&PlanDate=" + dateString + "&DateTimeToken=" + datetimeString + "&Sign=" + sign;
+        System.out.println(url);*/
     }
 
 

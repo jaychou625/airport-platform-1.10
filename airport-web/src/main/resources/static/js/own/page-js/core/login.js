@@ -1,3 +1,4 @@
+
 function checkForm() {
     let username = $("#username").val()
     let password = $("#password").val()
@@ -17,9 +18,11 @@ function login() {
     if (checkForm()) {
         let formValue = $("#login-form").serialize()
         call("post", "/login", formValue).done(function (result) {
+            console.log(result)
             result = JSON.parse(result.data)
+
             if (result.status === 703) {
-                location.href = "/main"
+                window.location.href = "/main"
             } else {
                 $("#login-info-label").text(result.data.error)
             }
