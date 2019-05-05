@@ -1,4 +1,7 @@
 $(function () {
+
+    mapInitialization("page-home-map-container")
+
     $("#html-content").mCustomScrollbar({
         axis: "y",
         theme: "dark",

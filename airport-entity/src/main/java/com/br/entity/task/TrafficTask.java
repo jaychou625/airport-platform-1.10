@@ -1,4 +1,4 @@
-package com.br.entity.map;
+package com.br.entity.task;
 
 import lombok.*;
 

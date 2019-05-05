@@ -1,12 +1,14 @@
 package com.br.controller.controller.user;
 
-import com.br.service.service.user.UserService;
-import com.br.entity.core.User;
+import com.br.entity.task.TaskObject;
+import com.br.service.service.traffic.TrafficTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * 用户控制器
@@ -17,11 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private TrafficTaskService trafficTaskService;
 
-    @RequestMapping(value = "/testUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/testTaskStatus", method = RequestMethod.GET)
     @ResponseBody
-    public User testUser(){
-        return this.userService.find(1, null);
+    public List<TaskObject> testTaskStatus(){
+        return trafficTaskService.getApronData();
     }
 }

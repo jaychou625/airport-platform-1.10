@@ -2,7 +2,7 @@ package com.br.controller.controller.monitor;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.br.entity.map.TrafficTask;
+import com.br.entity.task.TrafficTask;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
 import com.br.service.constant.RequestRouteConstant;
@@ -83,7 +83,6 @@ public class MonitorController {
     @RequiresPermissions({RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC})
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC, method = RequestMethod.GET)
     public String trafficPage(Model model) {
-        model.addAttribute("zoneId", "4602000001");
         model.addAttribute("breadcrumb", new BreadCrumb[]{new BreadCrumb("首页", RequestRouteConstant.REQUEST_ROUTE_HOME), new BreadCrumb("交通监管", RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC)});
         return ViewConstant.VIEW_DIR_MONITOR + ViewConstant.VIEW_FILE_MONITOR_TRAFFIC;
     }

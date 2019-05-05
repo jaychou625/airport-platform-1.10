@@ -85,7 +85,6 @@ public class CoreController extends BaseController {
         result.setStatus(CommonEnumeration.SUCCESS.getStatus());
         result.setCode(CommonEnumeration.SUCCESS.getCode());
         result.getData().put("breadcrumb", new BreadCrumb[]{new BreadCrumb("首页", RequestRouteConstant.REQUEST_ROUTE_HOME)});
-        result.getData().put("zoneId", "4602000001");
         result.getData().put("aewInfos", this.aewService.findAll());
         model.addAttribute("result", result);
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_HOME;
@@ -98,7 +97,6 @@ public class CoreController extends BaseController {
      */
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_UNAUTHED, method = RequestMethod.GET)
     public String unAuthPage() {
-        System.out.println("未授权");
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_UNAUTHED;
     }
 

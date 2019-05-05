@@ -29,8 +29,7 @@ public class LoginFilter extends FormAuthenticationFilter {
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        Subject subject = this.getSubject(request, response);
-        if (!subject.isAuthenticated()) {
+        if (!isLoginRequest(request, response) && isAjaxRequest(request)) {
             response.setHeader("session-status", "timeout");
         }
         return super.onAccessDenied(request, response);

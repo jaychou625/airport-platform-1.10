@@ -142,6 +142,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_IMAGES, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_WEBSOCKET, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MAP_RESOURCES, "anon");
+        filterChainDefinitionMap.put("/testTaskStatus", "anon");
         /* 测试终端 start */
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_FIND_CAR, "anon");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_TRAFFIC_INFO, "anon");

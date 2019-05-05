@@ -10,9 +10,6 @@
 <div id="html-content" xmlns:th="http://www.thymeleaf.org">
     <script th:src="@{/js/own/page-js/core/home.js}" type="text/javascript"></script>
     <link th:href="@{/css/core/home.css}" rel="stylesheet"/>
-    <script th:inline="javascript" type="text/javascript">
-        mapInitialization("page-home-map-container", [[${result.data.zoneId}]])
-    </script>
     <div class="page-home-top">
         <div class="page-home-map pull-left" id="page-home-map-container"></div>
         <div class="page-home-pie pull-right" id="page-home-pie">

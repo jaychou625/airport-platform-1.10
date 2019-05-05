@@ -1,0 +1,8 @@
+com\br\mapper\MenuMapper.class
+com\br\mapper\CarMapper.class
+com\br\mapper\DepartmentMapper.class
+com\br\mapper\DriverMapper.class
+com\br\mapper\UserMapper.class
+com\br\mapper\AewInfoMapper.class
+com\br\mapper\AewMapper.class
+com\br\mapper\RoleMapper.class

@@ -11,6 +11,7 @@
     color: rgba(203, 58, 65, 1);
     border: 1px solid rgba(204, 63, 70, 1);
     text-align: center;
+    margin-left: calc((100% - 60px) / 2);
 }
 
 .aew-level-two {
@@ -20,6 +21,7 @@
     color: rgba(240, 162, 81, 1);
     border-radius: 2px;
     border: 1px solid rgba(240, 162, 81, 1);
+    margin-left: calc((100% - 60px) / 2);
 }
 
 .aew-level-three {

@@ -1,9 +1,11 @@
 package com.br.service.service.traffic;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.br.entity.map.AewInfo;
-import com.br.entity.map.TrafficTask;
+import com.br.entity.task.TaskObject;
+import com.br.entity.task.TrafficTask;
 import com.br.entity.websocket.WSMessage;
 import com.br.service.constant.RedisDataConstant;
 import com.br.service.constant.WSMessageConstant;
@@ -24,7 +26,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -135,7 +139,7 @@ public class TrafficTaskService {
                 for (PositionNotice positionNotice : workConditions) {
                     if (positionNotice.noticeType == PositionNotice.TYPE_FARAWAY) {
                         this.saveTrafficTask(trafficTask, true);
-                    }else{
+                    } else {
                         this.aewService.add(this.buildAewInfo(positionNotice, trafficTask));
                         this.redisService.saveCacheOfHash(RedisDataConstant.HASH_AEW, "condition-" + trafficInfo.deviceNo, positionNotice);
                     }
@@ -266,7 +270,9 @@ public class TrafficTaskService {
 
 
     /*****************************获取站坪数据*****************************/
-    public void getApronData(){
+    public List<TaskObject> getApronData() {
+        JSONArray jsonTaskObjects = null;
+        List<TaskObject> taskObjectList = new ArrayList<>();
         Date date = new Date();
         SimpleDateFormat sdf_date = new SimpleDateFormat("yyyyMMdd");
         String dateString = sdf_date.format(date);
@@ -276,15 +282,18 @@ public class TrafficTaskService {
         String sign = this.crypUtils.toMD5(str);
         String url = "http://10.2.135.122:8091/CallHandlers/WgssHandler.ashx?MethodName=Data&CallUserName=syx&PlanDate=" + dateString + "&DateTimeToken=" + datetimeString + "&Sign=" + sign;
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().get().url(url).build();
         try {
             Response response = client.newCall(request).execute();
             JSONObject jsonObject = JSONObject.parseObject(response.body().string());
-            // 格式化JSON数据
-        }catch (IOException ioe){
+            jsonTaskObjects = jsonObject.getJSONArray("Data");
+            for(Object jsonTaskObject : jsonTaskObjects){
+                TaskObject taskObject = ((JSONObject) jsonTaskObject).toJavaObject(TaskObject.class);
+                taskObjectList.add(taskObject);
+            }
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        return taskObjectList;
     }
-
-
 }

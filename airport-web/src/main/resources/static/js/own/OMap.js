@@ -1,8 +1,5 @@
-/*------------------------- 地图初始化 ----------------------------*/
-function mapInitialization(target, zoneId) {
-    /*------------------------- 机场编号 ----------------------------*/
-    mapConfig.zoneId = zoneId;
-    // 创建视图
+function mapInitialization(target) {
+    /*------------------------- 创建视图 ----------------------------*/
     if (view === undefined || view === null) {
         view = new ol.View({
             center: mapConfig.center,
@@ -44,6 +41,8 @@ function mapInitialization(target, zoneId) {
     }
     layerPlus(vectorLayer)
     controlPlus(new ol.control.ScaleLine())
+
+    map.render()
 }
 
 /*------------------------- 瓦片算法 ----------------------------*/
