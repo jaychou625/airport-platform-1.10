@@ -41,21 +41,21 @@ public class ADSBUtils {
         for (String planeString_ : planesStringList) {
             Plane plane = new Plane();
             String[] planeInfos = planeString_.split(",");
-            plane.setAircraftSeq(planeInfos[0]);
+            plane.setPlaneAddrCode(planeInfos[0]);
             plane.setDataSourceDept(planeInfos[1]);
-            plane.setAircraftLongitude(new BigDecimal(planeInfos[2]));
-            plane.setAircraftLatitude(new BigDecimal(planeInfos[3]));
-            plane.setAircraftVerticalSpeed(Integer.parseInt(planeInfos[4]));
-            plane.setAircraftGroundVelocity(Integer.parseInt(planeInfos[5]));
-            plane.setAircraftHeight(Integer.parseInt(planeInfos[6]));
-            plane.setReceiveAircraftCode(planeInfos[7]);
+            plane.setPlaneLongitude(new BigDecimal(planeInfos[2]));
+            plane.setPlaneLatitude(new BigDecimal(planeInfos[3]));
+            plane.setPlaneVerticalSpeed(Integer.parseInt(planeInfos[4]));
+            plane.setPlaneGroundVelocity(Integer.parseInt(planeInfos[5]));
+            plane.setPlaneHeight(Integer.parseInt(planeInfos[6]));
+            plane.setReceivePlaneCode(planeInfos[7]);
             if (planeInfos[8].equals("")) {
-                plane.setFlightNumber(planeInfos[0]);
+                plane.setPlaneSeq(planeInfos[0]);
             } else {
-                plane.setFlightNumber(planeInfos[8]);
+                plane.setPlaneSeq(planeInfos[8]);
             }
-            plane.setAircraftHeading(new BigDecimal(planeInfos[9]));
-            plane.setAckAircraftCode(planeInfos[10]);
+            plane.setPlaneHeading(new BigDecimal(planeInfos[9]));
+            plane.setAckPlaneCode(planeInfos[10]);
             plane.setReceiveTimeOfLong(receiveTimeOfLong);
             planeBeans.add(plane);
         }

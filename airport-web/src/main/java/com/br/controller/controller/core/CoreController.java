@@ -56,6 +56,7 @@ public class CoreController extends BaseController {
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_LOGIN;
     }
 
+
     /**
      * 主页
      *

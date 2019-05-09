@@ -22,12 +22,15 @@
         <fastjson.version>1.2.47</fastjson.version>
         <netty-websokcet.version>0.7.3</netty-websokcet.version>
         <tlclient.version>0.0.1</tlclient.version>
+        <tljms.version>0.0.1</tljms.version>
+        <tlq63j.version>0.0.1</tlq63j.version>
         <druid.version>1.1.9</druid.version>
         <page-helper.version>1.2.5</page-helper.version>
         <mybatis-spring.version>1.3.2</mybatis-spring.version>
         <shiro-srping.version>1.4.0</shiro-srping.version>
         <quartz.version>2.2.1</quartz.version>
         <okhttp.version>3.14.1</okhttp.version>
+        <dom4j.version>1.6.1</dom4j.version>
     </properties>
 
     <dependencies>
@@ -88,6 +91,11 @@
             <groupId>com.tongtech</groupId>
             <artifactId>tlclient</artifactId>
             <version>${tlclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

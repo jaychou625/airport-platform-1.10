@@ -1,12 +1,11 @@
 package com.br.service.message;
 
-import com.br.service.constant.AMQTopicConstant;
+import com.br.service.constant.MQConstant;
 import com.br.service.service.redis.RedisService;
 import com.br.service.service.traffic.PositionService;
 import com.br.service.utils.ADSBUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.stereotype.Component;
 
 /**
  * ActiveMQ 消息接收
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
  * @Author Zero
  * @Date 2019 02 26
  */
-@Component
 public class AMQReceiver {
 
     // Redis 服务
@@ -34,7 +32,7 @@ public class AMQReceiver {
      *
      * @param planes ADS-B 数据集字符串
      */
-    @JmsListener(destination = AMQTopicConstant.TOPIC_ADSB_RECEIVER)
+    @JmsListener(destination = MQConstant.TOPIC_ADSB_RECEIVER)
     public void receiveADSBInfo(String planes) {
         this.positionService.savePlanesInfo(aDSBUtils.toPlaneList(planes));
     }

@@ -11,19 +11,19 @@ function judgeTrafficIsInAirport(coords) {
 function buildOrFlushPlanePositionObject(planes, source) {
     if (planes.length > 0) {
         $.each(planes, function (index, plane) {
-            let planeFeature = getFeatureBySeq(source, "plane-" + plane.aircraftSeq)
-            let coords = [plane.aircraftLongitude, plane.aircraftLatitude]
+            let planeFeature = getFeatureBySeq(source, "plane-" + plane.planeAddrCode)
+            let coords = [plane.planeLongitude, plane.planeLatitude]
             if (judgeTrafficIsInAirport(coords)) {
                 if (planeFeature != null) {
                     featurePosition(planeFeature, coords)
                     featureAttrs(planeFeature, "planeInfo", plane)
-                    featureRotate(planeFeature, calcRad(plane.aircraftHeading, 97.4))
+                    featureRotate(planeFeature, calcRad(plane.planeHeading, 97.4))
                 } else {
                     planeFeature = drawPointFeature("plane", coords)
-                    featureSeq(planeFeature, "plane-" + plane.aircraftSeq)
+                    featureSeq(planeFeature, "plane-" + plane.planeAddrCode)
                     featureAttrs(planeFeature, "trafficType", "plane")
                     featureAttrs(planeFeature, "planeInfo", plane)
-                    featureRotate(planeFeature, calcRad(plane.aircraftHeading, 97.4))
+                    featureRotate(planeFeature, calcRad(plane.planeHeading, 97.4))
                     addFeature(source, planeFeature)
                 }
             } else {

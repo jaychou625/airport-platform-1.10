@@ -14,16 +14,16 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @ToString
 public class Plane {
-    @Getter @Setter private String aircraftSeq;
+    @Getter @Setter private String planeAddrCode;
     @Getter @Setter private String dataSourceDept;
-    @Getter @Setter private BigDecimal aircraftLongitude;
-    @Getter @Setter private BigDecimal aircraftLatitude;
-    @Getter @Setter private Integer aircraftVerticalSpeed;
-    @Getter @Setter private Integer aircraftGroundVelocity;
-    @Getter @Setter private Integer aircraftHeight;
-    @Getter @Setter private String receiveAircraftCode;
-    @Getter @Setter private String flightNumber;
-    @Getter @Setter private BigDecimal aircraftHeading;
-    @Getter @Setter private String ackAircraftCode;
+    @Getter @Setter private BigDecimal planeLongitude;
+    @Getter @Setter private BigDecimal planeLatitude;
+    @Getter @Setter private Integer planeVerticalSpeed;
+    @Getter @Setter private Integer planeGroundVelocity;
+    @Getter @Setter private Integer planeHeight;
+    @Getter @Setter private String receivePlaneCode;
+    @Getter @Setter private String planeSeq;
+    @Getter @Setter private BigDecimal planeHeading;
+    @Getter @Setter private String ackPlaneCode;
     @Getter @Setter private Long receiveTimeOfLong;
 }

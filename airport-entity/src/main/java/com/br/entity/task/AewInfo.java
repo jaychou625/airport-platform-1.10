@@ -1,5 +1,7 @@
-package com.br.entity.map;
+package com.br.entity.task;
 
+import com.br.entity.map.Car;
+import com.br.entity.map.Driver;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
@@ -23,7 +25,10 @@ public class AewInfo {
     @Getter @Setter String planeSeq;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Getter @Setter Date aewInfoTime;
-    @Getter @Setter Aew aew;
-    @Getter @Setter Car car;
-    @Getter @Setter Driver driver;
+    @Getter @Setter
+    Aew aew;
+    @Getter @Setter
+    Car car;
+    @Getter @Setter
+    Driver driver;
 }

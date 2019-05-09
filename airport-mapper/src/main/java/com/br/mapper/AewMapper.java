@@ -1,6 +1,6 @@
 package com.br.mapper;
 
-import com.br.entity.map.Aew;
+import com.br.entity.task.Aew;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

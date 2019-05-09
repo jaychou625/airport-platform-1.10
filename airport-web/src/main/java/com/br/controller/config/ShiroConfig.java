@@ -4,17 +4,13 @@ import com.br.service.constant.RequestRouteConstant;
 import com.br.service.shiro.APShiroRealm;
 import com.br.service.shiro.filter.LoginFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.AbstractSessionManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
@@ -34,32 +30,6 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    /**
-     * Shiro 记住我Cookie
-     *
-     * @return SimpleCookie
-     */
-    @Bean
-    public SimpleCookie rememberMeCookie() {
-        SimpleCookie rememberMeCookie = new SimpleCookie();
-        rememberMeCookie.setName("rememberMe");
-        rememberMeCookie.setMaxAge(604800);
-        rememberMeCookie.setHttpOnly(true);
-        return rememberMeCookie;
-    }
-
-    /**
-     * Shiro 记住我管理
-     *
-     * @return CookieRememberMeManager
-     */
-    @Bean
-    public CookieRememberMeManager cookieRememberMeManager() {
-        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
-        cookieRememberMeManager.setCookie(rememberMeCookie());
-        cookieRememberMeManager.setCipherKey(Base64.decode("IonwzK5Iytvy029yX82vDw=="));
-        return cookieRememberMeManager;
-    }
 
     /**
      * Shiro 数据域
@@ -105,7 +75,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager webSessionManager() {
         DefaultWebSessionManager webSessionManager = new DefaultWebSessionManager();
-        webSessionManager.setGlobalSessionTimeout(AbstractSessionManager.DEFAULT_GLOBAL_SESSION_TIMEOUT);
+        webSessionManager.setGlobalSessionTimeout(DefaultWebSessionManager.DEFAULT_GLOBAL_SESSION_TIMEOUT * 2);
         webSessionManager.setSessionDAO(memorySessionDAO());
         webSessionManager.setSessionIdUrlRewritingEnabled(false);
         return webSessionManager;
@@ -121,7 +91,6 @@ public class ShiroConfig {
         DefaultWebSecurityManager webSecurityManager = new DefaultWebSecurityManager();
         webSecurityManager.setRealm(apShiroRealm());
         webSecurityManager.setSessionManager(webSessionManager());
-        webSecurityManager.setRememberMeManager(cookieRememberMeManager());
         return webSecurityManager;
     }
 
@@ -150,9 +119,7 @@ public class ShiroConfig {
         /* 测试终端 end */
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_LOGOUT, "logout");
         filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_UNAUTHED, "anon");
-        filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_MAIN, "user");
-        filterChainDefinitionMap.put(RequestRouteConstant.REQUEST_ROUTE_HOME, "user");
-        filterChainDefinitionMap.put("/*", "authc");
+        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilters(filterMap);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         shiroFilterFactoryBean.setLoginUrl(RequestRouteConstant.REQUEST_ROUTE_LOGIN);

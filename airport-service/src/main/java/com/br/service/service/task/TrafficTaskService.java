@@ -1,16 +1,15 @@
-package com.br.service.service.traffic;
+package com.br.service.service.task;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.br.entity.map.AewInfo;
-import com.br.entity.task.TaskObject;
+import com.br.entity.task.AewInfo;
 import com.br.entity.task.TrafficTask;
 import com.br.entity.websocket.WSMessage;
 import com.br.service.constant.RedisDataConstant;
 import com.br.service.constant.WSMessageConstant;
 import com.br.service.service.map.MapService;
 import com.br.service.service.redis.RedisService;
+import com.br.service.service.traffic.AewService;
+import com.br.service.service.traffic.PositionService;
 import com.br.service.service.websocket.WSService;
 import com.br.service.utils.CrypUtils;
 import com.route.broadcast.ConflictPoint;
@@ -18,17 +17,10 @@ import com.route.broadcast.PositionNotice;
 import com.route.imp.NavPoint;
 import com.route.imp.PositionPoint;
 import com.route.imp.nav.Distance;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -268,32 +260,4 @@ public class TrafficTaskService {
         return navPoint;
     }
 
-
-    /*****************************获取站坪数据*****************************/
-    public List<TaskObject> getApronData() {
-        JSONArray jsonTaskObjects = null;
-        List<TaskObject> taskObjectList = new ArrayList<>();
-        Date date = new Date();
-        SimpleDateFormat sdf_date = new SimpleDateFormat("yyyyMMdd");
-        String dateString = sdf_date.format(date);
-        SimpleDateFormat sdf_datetime = new SimpleDateFormat("yyyyMMddHHmmss");
-        String datetimeString = sdf_datetime.format(date);
-        String str = "Datasyx" + dateString + datetimeString + "syx.call.2019wgss.webcall.2019";
-        String sign = this.crypUtils.toMD5(str);
-        String url = "http://10.2.135.122:8091/CallHandlers/WgssHandler.ashx?MethodName=Data&CallUserName=syx&PlanDate=" + dateString + "&DateTimeToken=" + datetimeString + "&Sign=" + sign;
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().get().url(url).build();
-        try {
-            Response response = client.newCall(request).execute();
-            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
-            jsonTaskObjects = jsonObject.getJSONArray("Data");
-            for(Object jsonTaskObject : jsonTaskObjects){
-                TaskObject taskObject = ((JSONObject) jsonTaskObject).toJavaObject(TaskObject.class);
-                taskObjectList.add(taskObject);
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-        return taskObjectList;
-    }
 }

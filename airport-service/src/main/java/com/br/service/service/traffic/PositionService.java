@@ -6,6 +6,7 @@ import com.br.entity.websocket.WSMessage;
 import com.br.service.constant.RedisDataConstant;
 import com.br.service.constant.WSMessageConstant;
 import com.br.service.service.redis.RedisService;
+import com.br.service.service.task.TrafficTaskService;
 import com.br.service.service.websocket.WSService;
 import com.route.imp.PositionPoint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class PositionService {
         if (planes != null && planes.size() > 0) {
             Map<String, Object> aDSBInfosMap = new HashMap<>();
             for (Plane aDSBInfo : planes) {
-                aDSBInfosMap.put(aDSBInfo.getAircraftSeq(), aDSBInfo);
+                aDSBInfosMap.put(aDSBInfo.getPlaneSeq(), aDSBInfo);
             }
             this.redisService.saveCacheOfHash(RedisDataConstant.HASH_PLANE, aDSBInfosMap);
             this.sendPlanePositionObject(planes);

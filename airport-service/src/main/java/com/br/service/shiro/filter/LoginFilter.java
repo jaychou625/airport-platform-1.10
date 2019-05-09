@@ -26,13 +26,24 @@ import java.io.PrintWriter;
 public class LoginFilter extends FormAuthenticationFilter {
 
     @Override
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object mappedValue) {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        Subject subject = this.getSubject(servletRequest, servletResponse);
+        if(isAjaxRequest(request) && isLoginRequest(request, response)){
+            subject.logout();
+        }
+        return super.isAccessAllowed(request, response, mappedValue);
+    }
+
+    @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        if (!isLoginRequest(request, response) && isAjaxRequest(request)) {
+        if(isLoginRequest(servletRequest, servletResponse) && !isLoginSubmission(servletRequest, servletResponse) && isAjaxRequest(request)) {
             response.setHeader("session-status", "timeout");
         }
-        return super.onAccessDenied(request, response);
+        return super.onAccessDenied(servletRequest, servletResponse);
     }
 
     @Override
@@ -58,6 +69,7 @@ public class LoginFilter extends FormAuthenticationFilter {
 
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest servletRequest, ServletResponse servletResponse) {
+        System.out.println("onLoginFailure");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setCharacterEncoding("UTF-8");

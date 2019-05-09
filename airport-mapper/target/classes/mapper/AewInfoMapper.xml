@@ -4,7 +4,7 @@
 
 <mapper namespace="com.br.mapper.AewInfoMapper">
 
-    <resultMap id="aewInfoResultMap" type="com.br.entity.map.AewInfo">
+    <resultMap id="aewInfoResultMap" type="com.br.entity.task.AewInfo">
         <id column="aew_info_seq" property="aewInfoSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_info_aew_seq" property="aewSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_info_car_seq" property="carSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
@@ -24,7 +24,7 @@
         SELECT * FROM AP_AEW_INFO
     </select>
 
-    <insert id="add" parameterType="com.br.entity.map.AewInfo">
+    <insert id="add" parameterType="com.br.entity.task.AewInfo">
         INSERT INTO AP_AEW_INFO(aew_info_aew_seq, aew_info_car_seq, aew_info_driver_seq, aew_info_plane_seq, aew_info_time)
         VALUES (#{aewSeq}, #{carSeq}, #{driverSeq}, #{planeSeq}, #{aewInfoTime})
     </insert>

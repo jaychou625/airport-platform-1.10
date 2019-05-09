@@ -1,6 +1,6 @@
 package com.br.service.service.traffic;
 
-import com.br.entity.map.AewInfo;
+import com.br.entity.task.AewInfo;
 import com.br.mapper.AewInfoMapper;
 import org.springframework.stereotype.Service;
 

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.br.mapper.AewMapper">
 
-    <resultMap id="aewResultMap" type="com.br.entity.map.Aew">
+    <resultMap id="aewResultMap" type="com.br.entity.task.Aew">
         <id column="aew_seq" property="aewSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_level" property="aewLevel" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_scene" property="aewScene" javaType="java.lang.String" jdbcType="VARCHAR"/>
