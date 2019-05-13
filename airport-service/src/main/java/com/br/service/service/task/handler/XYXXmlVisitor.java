@@ -132,7 +132,7 @@ public class XYXXmlVisitor extends VisitorSupport {
                     flightInfo.setDepFltType(nodeValue);
                     break;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

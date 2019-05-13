@@ -11,13 +11,18 @@
         <result column="flight_info_method" property="method" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_type" property="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_flight_attr" property="flightAttr" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_flight_type" property="flightTypeSeq" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_aircraft_type" property="aircraftType" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_registration" property="registration" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_flight_number" property="flightNumber" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_flight_type" property="flightTypeSeq" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="flight_info_aircraft_type" property="aircraftType" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="flight_info_registration" property="registration" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="flight_info_flight_number" property="flightNumber" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
         <result column="flight_info_primary_flt" property="primaryFlt" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_related_flt" property="relatedFlt" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_flight_status" property="flightStatus" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_flight_status" property="flightStatus" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
         <result column="flight_info_port_no" property="portNo" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_plan_date" property="planDate" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_adt" property="adt" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -28,10 +33,12 @@
         <result column="flight_info_origin" property="origin" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_destination" property="destination" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_via" property="via" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_counter_open_dt" property="counterOpenDT" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_counter_open_dt" property="counterOpenDT" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
         <result column="flight_info_counter" property="counter" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_count_int" property="counterInt" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_dep_terminal" property="depTerminal" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_counter_int" property="counterInt" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_dep_terminal" property="depTerminal" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
         <result column="flight_info_gate" property="gate" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_gate_int" property="gateInt" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="flight_info_belt" property="belt" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -39,14 +46,90 @@
         <result column="flight_info_psg_total" property="psgTotal" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="flight_info_bag_num" property="bagNum" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="flight_info_bag_weight" property="bagWeight" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-        <result column="flight_info_arr_flight_number" property="arrFlightNumber" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_arr_flight_number" property="arrFlightNumber" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
         <result column="flight_info_arr_flt_type" property="arrFltType" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_dep_flight_num" property="depFlightNumber" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="flight_info_arr_flt_type" property="arrFltType" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="flight_info_dep_flight_number" property="depFlightNumber" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="flight_info_dep_flt_type" property="arrFltType" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="add" parameterType="com.br.entity.task.FlightInfo">
-
+        INSERT INTO ap_flight_info
+        (flight_info_biz_type,
+         flight_info_datetime,
+         flight_info_method,
+         flight_info_type,
+         flight_info_flight_attr,
+         flight_info_flight_type,
+         flight_info_aircraft_type,
+         flight_info_registration,
+         flight_info_flight_number,
+         flight_info_primary_flt,
+         flight_info_related_flt,
+         flight_info_flight_status,
+         flight_info_port_no,
+         flight_info_plan_date,
+         flight_info_adt,
+         flight_info_edt,
+         flight_info_sdt,
+         flight_info_arrsdt,
+         flight_info_cobt,
+         flight_info_origin,
+         flight_info_destination,
+         flight_info_via,
+         flight_info_counter_open_dt,
+         flight_info_counter,
+         flight_info_counter_int,
+         flight_info_dep_terminal,
+         flight_info_gate,
+         flight_info_gate_int,
+         flight_info_belt,
+         flight_info_belt_int,
+         flight_info_psg_total,
+         flight_info_bag_num,
+         flight_info_bag_weight,
+         flight_info_arr_flight_number,
+         flight_info_arr_flt_type,
+         flight_info_dep_flight_number,
+         flight_info_dep_flt_type)
+        VALUES (#{bizType},
+                #{dataTime},
+                #{method},
+                #{type},
+                #{flightAttrSeq},
+                #{flightTypeSeq},
+                #{aircraftType},
+                #{registration},
+                #{flightNumber},
+                #{primaryFlt},
+                #{relatedFlt},
+                #{flightStatusSeq},
+                #{portNo},
+                #{planDate},
+                #{adt},
+                #{edt},
+                #{sdt},
+                #{arrSdt},
+                #{cobt},
+                #{origin},
+                #{destination},
+                #{via},
+                #{counterOpenDT},
+                #{counter},
+                #{counterInt},
+                #{depTerminal},
+                #{gate},
+                #{gateInt},
+                #{belt},
+                #{beltInt},
+                #{psgTotal},
+                #{bagNum},
+                #{bagWeight},
+                #{arrFlightNumber},
+                #{arrFltType},
+                #{depFlightNumber},
+                #{arrFltType})
     </insert>
 
 </mapper>

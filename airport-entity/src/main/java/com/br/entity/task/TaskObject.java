@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class TaskObject {
+    @Getter @Setter private Integer taskObjectSeq;
     @Getter @Setter private Long fid;
     @Getter @Setter private String airCorp;
     @Getter @Setter private String fltNo;

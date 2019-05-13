@@ -46,37 +46,37 @@ function mapInitialization(target) {
 }
 
 /*------------------------- 瓦片算法 ----------------------------*/
-function tileUrl(tileCoords) {
-    if (!tileCoords) return ""
-    let z = tileCoords[0]
-    let x = tileCoords[1]
-    let y = tileCoords[2]
-    let wn = mapConfig.zeroWidthNum * Math.pow(2, z)
-    let bx = x / wn
-    x = x % wn
+function tileUrl(tileCoord, pixelRatio, projection) {
+    if (!tileCoord) return "";
+    var z = tileCoord[0];
+    var x = tileCoord[1];
+    var y = tileCoord[2];
+    var wn = mapConfig.zeroWidthNum * Math.pow(2, z);
+    var bx = x / wn;
+    x = x % wn;
     if (x * wn < 0 || bx >= 1) {
-        x = 0
-        y = 0
+        x = 0;
+        y = 0;
     } else {
-        let hn = mapConfig.zeroHeightNum * Math.pow(2, z)
-        let by = (y + 1) / hn
+        var hn = mapConfig.zeroHeightNum * Math.pow(2, z);
+        var by = (y + 1) / hn;
         if (y > 0 || by <= -1) {
-            y = 0
-            x = 0
+            y = 0;
+            x = 0;
         }
-        y = -((y + 1) % hn)
+        y = -((y + 1) % hn);
     }
-    let xStr = x.toString()
-    let xStrLen = 4 - xStr.length
-    for (let i = 0; i < xStrLen; i++) {
-        xStr = "0" + xStr
+    var xStr = x.toString();
+    var xStrLen = 4 - xStr.length;
+    for (var i = 0; i < xStrLen; i++) {
+        xStr = "0" + xStr;
     }
-    let yStr = y.toString()
-    let yStrLen = 4 - yStr.length
-    for (let i = 0; i < yStrLen; i++) {
-        yStr = "0" + yStr
+    var yStr = y.toString();
+    var yStrLen = 4 - yStr.length;
+    for (var i = 0; i < yStrLen; i++) {
+        yStr = "0" + yStr;
     }
-    z = Math.pow(2, z)
+    z = Math.pow(2, z);
     let tileUrl = mapConfig.url + mapConfig.zoneId + "/" + z + "/" + z + yStr + xStr + ".png"
     return tileUrl
 }

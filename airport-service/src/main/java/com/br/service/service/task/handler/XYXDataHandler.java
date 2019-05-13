@@ -1,10 +1,12 @@
 package com.br.service.service.task.handler;
 
+import com.br.entity.task.FlightInfo;
+import com.br.mapper.FlightInfoMapper;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.annotation.Resource;
 import java.io.File;
 
 /**
@@ -14,6 +16,11 @@ import java.io.File;
  * @Date 2019 05 09
  */
 public class XYXDataHandler {
+
+    // 航班信息Mapper
+    @Resource
+    private FlightInfoMapper flightInfoMapper;
+
 
     // XYXXml观察者
     @Autowired
@@ -35,7 +42,10 @@ public class XYXDataHandler {
             Document doc = saxReader.read(new File(fileName));
             Element root = doc.getRootElement();
             root.accept(this.xyxXmlVisitor);
-            System.out.println(XYXXmlVisitor.flightInfo);
+            FlightInfo flightInfo = XYXXmlVisitor.flightInfo;
+            if(flightInfo != null){
+                this.flightInfoMapper.add(flightInfo);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;

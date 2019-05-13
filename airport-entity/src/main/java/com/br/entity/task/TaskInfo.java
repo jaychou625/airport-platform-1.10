@@ -13,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 public class TaskInfo {
+    @Getter @Setter private Integer taskInfoSeq;
     @Getter @Setter private Long fid;
     @Getter @Setter private Date sendTime;
     @Getter @Setter private String prcName;

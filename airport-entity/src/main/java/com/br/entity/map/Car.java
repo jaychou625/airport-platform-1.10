@@ -2,10 +2,12 @@ package com.br.entity.map;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 车辆实例
+ *
  * @Author Zero
  * @Date 2019 03 25
  */
@@ -13,17 +15,49 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 public class Car {
-    @Getter @Setter Integer carSeq;
-    @Getter @Setter String carDept;
-    @Getter @Setter String carSecOfc;
-    @Getter @Setter String carType;
-    @Getter @Setter String carNo;
-    @Getter @Setter String carBrand;
-    @Getter @Setter String carName;
-    @Getter @Setter Date carObtainDate;
-    @Getter @Setter Date carStartDate;
-    @Getter @Setter String carFuelType;
-    @Getter @Setter String carBasicPar;
-    @Getter @Setter String carValue;
-    @Getter @Setter String carSerCdt;
+    @Getter
+    @Setter
+    Integer carSeq;
+    @Getter
+    @Setter
+    String carDept;
+    @Getter
+    @Setter
+    String carSecOfc;
+    @Getter
+    @Setter
+    String carType;
+    @Getter
+    @Setter
+    String carNo;
+    @Getter
+    @Setter
+    String carBrand;
+    @Getter
+    @Setter
+    String carName;
+    @Getter
+    @Setter
+    Date carObtainDate;
+    @Getter
+    @Setter
+    Date carStartDate;
+    @Getter
+    @Setter
+    String carFuelType;
+    @Getter
+    @Setter
+    String carBasicPar;
+    @Getter
+    @Setter
+    String carValue;
+    @Getter
+    @Setter
+    String carSerCdt;
+    @Getter
+    @Setter
+    BigDecimal carLongitude;
+    @Getter
+    @Setter
+    BigDecimal carLatitude;
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.TaskInfoMapper">
+
+    <resultMap id="taskInfoResultMap" type="com.br.entity.task.TaskInfo">
+        <id column="task_info_seq" property="taskInfoSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="task_info_fid" property="fid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="task_info_send_time" property="sendTime" javaType="java.util.Date"/>
+        <result column="task_info_prc_name" property="prcName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="task_info_send_user_name" property="sendUserName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="task_info_send_organ_name" property="sendOrganName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="task_info_assign_time" property="assignTime" javaType="java.util.Date"/>
+        <result column="task_info_feed_back_name" property="feedBackName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="task_info_feed_back_organ_name" property="feedBackOrganName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="task_info_accept_time" property="acceptTime" javaType="java.util.Date"/>
+        <result column="task_info_place_time" property="placeTime" javaType="java.util.Date"/>
+        <result column="task_info_start_time" property="startTime" javaType="java.util.Date"/>
+        <result column="task_info_end_time" property="endTime" javaType="java.util.Date"/>
+        <result column="task_info_feed_back_type" property="feedBackType" javaType="java.lang.Integer"
+                jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.br.entity.task.TaskInfo">
+        INSERT INTO ap_task_info(task_info_fid,
+                                 task_info_send_time,
+                                 task_info_prc_name,
+                                 task_info_send_user_name,
+                                 task_info_send_organ_name,
+                                 task_info_assign_time,
+                                 task_info_feed_back_name,
+                                 task_info_feed_back_organ_name,
+                                 task_info_accept_time,
+                                 task_info_place_time,
+                                 task_info_start_time,
+                                 task_info_end_time,
+                                 task_info_feed_back_type)
+        VALUES (#{fid},
+                #{sendTime},
+                #{prcName},
+                #{sendUserName},
+                #{sendOrganName},
+                #{assignTime},
+                #{feedBackName},
+                #{feedBackOrganName},
+                #{acceptTime},
+                #{placeTime},
+                #{startTime},
+                #{endTime},
+                #{feedBackType})
+    </insert>
+</mapper>

@@ -66,7 +66,6 @@ public class XYXReceiver {
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
-                System.out.println(new String(msgInfo.getMsgData()));
                 this.xyxDataHandler.xmlDataParse(new String(msgInfo.getMsgData(), Charset.forName("UTF-8")));
                 if (msgOpt.AckMode == TlqMsgOpt.TLQACK_USER) {
                     int ackType = TlqMsgOpt.TLQACK_COMMIT;

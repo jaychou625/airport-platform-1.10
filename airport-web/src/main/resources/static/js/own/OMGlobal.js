@@ -1,5 +1,5 @@
 /*------------------------- 服务器IP与端口 ----------------------------*/
-let serverIp = "10.24.17.191"
+let serverIp = "127.0.0.1"
 let serverPort = "9090"
 /*------------------------- 地图 ----------------------------*/
 let map
@@ -16,15 +16,15 @@ let mapConfig = {
     minZoom: 0, // 最小视图等级
     maxZoom: 3, // 最大视图等级
     projection: "EPSG:4326", // 投影坐标系类型
-    maxResolution: 0.00004281953125, // 最大分辨率
-    maxLon: 109.4342721, // 最大经度
-    maxLat: 18.329618, // 最大纬度
-    minLon: 109.3904249, // 最小经度
-    minLat: 18.274809, // 最小纬度
+    maxResolution: 0.0000261890625, // 最大分辨率
+    maxLon: 109.4340271, // 最大经度
+    maxLat: 18.323258, // 最大纬度
+    minLon: 109.3803919, // 最小经度
+    minLat: 18.289736, // 最小纬度
     rotation: 0.13, // 地图旋转弧度
-    extent: [109.3904249, 18.274809, 109.4342721, 18.329618], // 边界坐标
+    extent: [109.3803919, 18.289736, 109.4340271, 18.323258], // 边界坐标
     tileSize: [256, 256], // 瓦片宽高
-    zeroWidthNum: 4,
+    zeroWidthNum: 8,
     zeroHeightNum: 5,
     resolutions: function () {  // 瓦片分辨率计算
         let resolutions_array = new Array(4);
