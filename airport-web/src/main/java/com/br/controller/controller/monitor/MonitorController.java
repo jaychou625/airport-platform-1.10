@@ -1,19 +1,18 @@
 package com.br.controller.controller.monitor;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.br.entity.task.TrafficTask;
+import com.br.entity.map.Car;
+import com.br.entity.map.CarInfo;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
 import com.br.service.constant.RequestRouteConstant;
 import com.br.service.constant.ViewConstant;
 import com.br.service.enumeration.CommonEnumeration;
+import com.br.service.service.task.TrafficTaskService;
 import com.br.service.service.traffic.AewService;
 import com.br.service.service.traffic.PositionService;
-import com.br.service.service.task.TrafficTaskService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.route.imp.PositionPoint;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,45 +88,29 @@ public class MonitorController {
 
 
     /**
-     * 交通工具信息回传
+     * 车辆信息回传
      *
-     * @param trafficInfo 交通工具信息字符串
+     * @param trafficInfo 车辆信息
      */
-    @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_TRAFFIC_INFO, method = RequestMethod.POST)
+    @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC_INFO, method = RequestMethod.POST)
     @ResponseBody
     public void trafficInfo(@RequestBody String trafficInfo) {
-        JSONObject jsonObject = JSON.parseObject(trafficInfo);
-        PositionPoint positionPoint = new PositionPoint();
-        positionPoint.deviceNo = jsonObject.getInteger("car_seq").toString();
-        positionPoint.deviceType = "car";
-        positionPoint.carType = jsonObject.getInteger("car_type_seq");
-        positionPoint.gpsPosition.iLongititude = jsonObject.getDouble("car_lon");
-        positionPoint.gpsPosition.iLatitude = jsonObject.getDouble("car_lat");
-        this.positionService.saveTrafficInfo(positionPoint);
-        this.trafficTaskService.trafficAewInfoHandler(positionPoint);
+        JSONObject trafficInfoOfJSONObjects = JSONObject.parseObject(trafficInfo);
+        JSONObject carInfoOfJSONObject = trafficInfoOfJSONObjects.getJSONObject("carInfo");
+        Car car = JSONObject.parseObject(carInfoOfJSONObject.toJSONString(), Car.class);
+        JSONObject locationInfo = trafficInfoOfJSONObjects.getJSONObject("locationInfo");
+        CarInfo carInfo = new CarInfo();
+        carInfo.setCar(car);
+        carInfo.setCarBearing(locationInfo.getBigDecimal("bearing"));
+        carInfo.setCarAltitude(locationInfo.getBigDecimal("altitude"));
+        carInfo.setCarLongitude(locationInfo.getBigDecimal("longitude"));
+        carInfo.setCarLatitude(locationInfo.getBigDecimal("latitude"));
+        carInfo.setCarSpeed(locationInfo.getBigDecimal("speed"));
+        carInfo.setReceiveTime(locationInfo.getLong("time"));
+        /*--------------------------保存定位和发送到前端--------------------------*/
+
+        /*--------------------------任务和预警轮询--------------------------*/
+        return;
     }
-
-
-    /**
-     * 交通工具任务
-     *
-     * @param trafficTaskOfString 交通工具任务字符串
-     */
-    @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_TRAFFIC_TASK, method = RequestMethod.POST)
-    @ResponseBody
-    public void trafficTask(@RequestBody String trafficTaskOfString) {
-        JSONObject jsonObject = JSON.parseObject(trafficTaskOfString);
-        String task_event = jsonObject.getString("task_event");
-        Integer car_seq = jsonObject.getInteger("car_seq");
-        String target_name = jsonObject.getString("target_name");
-        String plane_seq = jsonObject.getString("plane_seq");
-        TrafficTask trafficTask = new TrafficTask();
-        trafficTask.setTaskEvent(task_event);
-        trafficTask.setTargetOfPointName(target_name);
-        trafficTask.setPlaneSeq(plane_seq);
-        trafficTask.setCarSeq(car_seq.toString());
-        this.trafficTaskService.saveTrafficTask(trafficTask, false);
-    }
-
 
 }

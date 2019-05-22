@@ -49,7 +49,5 @@ public class RequestRouteConstant {
     public final static String REQUEST_ROUTE_MONITOR_AEW_List = "/list";
     /************************** mobile app dir **************************/
     // 车辆信息路由
-    public final static String REQUEST_ROUTE_TRAFFIC_INFO = "/traffic/info";
-    // 车辆信息路由
-    public final static String REQUEST_ROUTE_TRAFFIC_TASK = "/traffic/task";
+    public final static String REQUEST_ROUTE_MONITOR_TRAFFIC_INFO = "/info";
 }

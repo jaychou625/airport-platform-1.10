@@ -22,12 +22,26 @@
 
 
     <select id="findAll" resultMap="carResultMap">
-        SELECT * FROM AP_CAR
+        SELECT *
+        FROM AP_CAR
     </select>
 
     <select id="find" resultMap="carResultMap" parameterType="java.lang.Integer">
-        SELECT * FROM AP_CAR WHERE car_seq = #{carSeq}
+        SELECT *
+        FROM AP_CAR
+        WHERE car_seq = #{carSeq}
     </select>
+
+    <insert id="addCarInfo">
+        INSERT INTO ap_car_info(car_info_seq,
+                                car_info_car_seq,
+                                car_info_car_longitude,
+                                car_info_car_latitude)
+        VALUES (#{carInfoSeq},
+                #{carSeq},
+                #{carLongitude},
+                #{carLatitude});
+    </insert>
 
 
 </mapper>

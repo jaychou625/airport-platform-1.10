@@ -35,5 +35,6 @@ public class AMQReceiver {
     @JmsListener(destination = MQConstant.TOPIC_ADSB_RECEIVER)
     public void receiveADSBInfo(String planes) {
         this.positionService.savePlanesInfo(aDSBUtils.toPlaneList(planes));
+
     }
 }

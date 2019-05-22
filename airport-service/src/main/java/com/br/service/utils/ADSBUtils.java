@@ -4,6 +4,7 @@ import com.br.entity.map.Plane;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +57,8 @@ public class ADSBUtils {
             }
             plane.setPlaneHeading(new BigDecimal(planeInfos[9]));
             plane.setAckPlaneCode(planeInfos[10]);
-            plane.setReceiveTimeOfLong(receiveTimeOfLong);
+            plane.setReceiveTimeStamp(receiveTimeOfLong);
+            plane.setReceiveTime(new Date(receiveTimeOfLong).toLocaleString());
             planeBeans.add(plane);
         }
         return planeBeans;

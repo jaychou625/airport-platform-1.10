@@ -1,6 +1,7 @@
 package com.br.mapper;
 
 import com.br.entity.map.Car;
+import com.br.entity.map.CarInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,5 +32,11 @@ public interface CarMapper {
      */
     Car find(@Param("carSeq") Integer carSeq);
 
-
+    /**
+     * 添加单个车辆信息
+     *
+     * @param carInfo 车辆信息
+     * @return
+     */
+    boolean addCarInfo(CarInfo carInfo);
 }

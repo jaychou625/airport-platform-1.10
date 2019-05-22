@@ -2,7 +2,6 @@ package com.br.entity.map;
 
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -54,10 +53,4 @@ public class Car {
     @Getter
     @Setter
     String carSerCdt;
-    @Getter
-    @Setter
-    BigDecimal carLongitude;
-    @Getter
-    @Setter
-    BigDecimal carLatitude;
 }

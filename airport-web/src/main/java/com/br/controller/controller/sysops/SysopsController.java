@@ -53,6 +53,7 @@ public class SysopsController {
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_FIND_CAR, method = RequestMethod.GET)
     @ResponseBody
     public Car car(@RequestParam("carSeq") Integer carSeq) {
+        System.out.println(carSeq);
         return this.carService.find(carSeq);
     }
 

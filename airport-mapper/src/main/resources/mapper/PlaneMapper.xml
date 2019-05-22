@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.PlaneMapper">
+    <resultMap id="planeResultMap" type="com.br.entity.map.Plane">
+        <id column="plane_info_seq" property="planeInfoSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="plane_info_plane_addr_code" property="planeAddrCode" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="plane_info_data_source_dept" property="dataSourceDept" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="plane_info_plane_longitude" property="planeLongitude"/>
+        <result column="plane_info_plane_latitude" property="planeLatitude"/>
+        <result column="plane_info_plane_vertical_speed" property="planeVerticalSpeed" javaType="java.lang.Integer"
+                jdbcType="INTEGER"/>
+        <result column="plane_info_plane_ground_velocity" property="planeGroundVelocity" javaType="java.lang.Integer"
+                jdbcType="INTEGER"/>
+        <result column="plane_info_plane_height" property="planeHeight" javaType="java.lang.Integer"
+                jdbcType="INTEGER"/>
+        <result column="plane_info_receive_plane_code" property="receivePlaneCode" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="plane_info_plane_seq" property="planeSeq" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="plane_info_heading" property="planeHeading" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="plane_info_ack_plane_code" property="ackPlaneCode" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="plane_info_receive_timestamp" property="receiveTimeStamp"/>
+        <result column="plane_info_receive_time" property="receiveTime"/>
+    </resultMap>
+
+    <insert id="add">
+        INSERT INTO ap_plane_info (plane_info_plane_addr_code,
+                                   plane_info_data_source_dept,
+                                   plane_info_plane_longitude,
+                                   plane_info_plane_latitude,
+                                   plane_info_plane_vertical_speed,
+                                   plane_info_plane_ground_velocity,
+                                   plane_info_plane_height,
+                                   plane_info_receive_plane_code,
+                                   plane_info_plane_seq,
+                                   plane_info_heading,
+                                   plane_info_ack_plane_code,
+                                   plane_info_receive_timestamp,
+                                   plane_info_receive_time)
+        VALUES (#{planeAddrCode},
+                #{dataSourceDept},
+                #{planeLongitude},
+                #{planeLatitude},
+                #{planeVerticalSpeed},
+                #{planeGroundVelocity},
+                #{planeHeight},
+                #{receivePlaneCode},
+                #{planeSeq},
+                #{planeHeading},
+                #{ackPlaneCode},
+                #{receiveTimeStamp},
+                #{receiveTime});
+    </insert>
+
+
+</mapper>
