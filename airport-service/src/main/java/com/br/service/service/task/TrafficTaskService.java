@@ -57,6 +57,10 @@ public class TrafficTaskService {
     @Autowired
     private AewService aewService;
 
+    // 任务状态服务
+    @Autowired
+    private TrafficTaskStateService trafficTaskStateService;
+
 
     /**
      * 处理任务
@@ -65,7 +69,7 @@ public class TrafficTaskService {
      */
     public void handleTask(CarInfo carInfo, boolean isReRoute) {
         /*--------------获取任务状态------------------*/
-        TaskStateInfo taskStateInfo = getTaskState(carInfo, isReRoute);
+        TaskStateInfo taskStateInfo = this.trafficTaskStateService.getTaskState(carInfo, isReRoute);
         /*--------------构建位置坐标------------------*/
         PositionPoint positionPoint = this.buildPositionPoint(carInfo);
         /*--------------存入位置------------------*/
