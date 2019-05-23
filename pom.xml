@@ -31,6 +31,7 @@
         <quartz.version>2.2.1</quartz.version>
         <okhttp.version>3.14.1</okhttp.version>
         <dom4j.version>1.6.1</dom4j.version>
+        <jedis.version>2.9.1</jedis.version>
     </properties>
 
     <dependencies>
@@ -126,6 +127,11 @@
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
     </dependencies>
 

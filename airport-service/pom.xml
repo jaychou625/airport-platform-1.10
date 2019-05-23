@@ -29,5 +29,6 @@
             <artifactId>airport-mapper</artifactId>
             <version>${airport-mapper.version}</version>
         </dependency>
+
     </dependencies>
 </project>
