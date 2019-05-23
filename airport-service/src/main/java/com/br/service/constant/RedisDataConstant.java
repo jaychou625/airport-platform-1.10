@@ -12,8 +12,6 @@ public class RedisDataConstant {
     public final static String HASH_PLANE = "HASH_PLANE";
     // TRAFFIC HASH 常量
     public final static String HASH_CAR = "HASH_CAR";
-    // TRAFFIC TASK 常量
-    public final static String HASH_TASK = "HASH_TASK";
-    // TRAFFIC AEW 常量
-    public final static String HASH_AEW = "HASH_AEW";
+    // TRAFFIC 冲突点 常量
+    public final static String HASH_CROSS = "HASH_CROSS";
 }

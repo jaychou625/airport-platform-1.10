@@ -76,18 +76,20 @@ public class PositionService {
     /**
      * 记录交通工具的实时位置
      *
-     * @param car 交通工具位置信息
+     * @param carInfo 交通工具位置信息
      */
-    public void saveCarInfo(PositionPoint car) {
-        this.sendCarPositionObject(car);
-        this.redisService.saveCacheOfHash(RedisDataConstant.HASH_CAR, car.deviceNo, car);
+    public void saveCarInfo(PositionPoint carInfo) {
+        this.sendCarPositionObject(carInfo);
+        this.redisService.saveCacheOfHash(RedisDataConstant.HASH_CAR, carInfo.deviceNo, carInfo);
     }
 
     /**
      * 发送交通工具位置信息
+     *
+     * @param carInfo
      */
-    public void sendCarPositionObject(PositionPoint car) {
-        this.wsService.wsSend(new WSMessage(WSMessageConstant.EVENT_CAR_POSITION, JSON.toJSONString(car)));
+    public void sendCarPositionObject(PositionPoint carInfo) {
+        this.wsService.wsSend(new WSMessage(WSMessageConstant.EVENT_CAR_POSITION, JSON.toJSONString(carInfo)));
     }
 
     /**
@@ -146,6 +148,5 @@ public class PositionService {
         planePositions.sort((PositionPoint p1, PositionPoint p2) -> p1.deviceNo.compareToIgnoreCase(p2.deviceNo));
         return planePositions;
     }
-
 
 }

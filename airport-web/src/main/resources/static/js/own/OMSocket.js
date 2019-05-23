@@ -22,6 +22,7 @@ function webSocketInitialization() {
                 case wsEvents.EVENT_CAR_POSITION: // 车辆位置事件
                     buildOrFlushTrafficPositionObject(message.data, vectorLayer.getSource())
                     break
+
                 case wsEvents.EVENT_ROUTE_PLAN: // 路径规划事件
                     routePlan(message.data, vectorLayer.getSource())
                     break

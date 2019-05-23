@@ -29,6 +29,10 @@ public class TaskStateInfo {
     @Getter
     @Setter
     private String carNo;
+    //任务车辆序号
+    @Getter
+    @Setter
+    private Integer carSeq;
     //接单司机
     @Getter
     @Setter

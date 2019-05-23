@@ -114,7 +114,7 @@ public class MapService {
     /**
      * 获取所有路径规划
      *
-     * @return Vector<Distance>
+     * @return Vector<Distance> 所有路径规划数组
      */
     public Vector<Distance> getAllRoutes() {
         Map<String, Distance> routeMap = this.redisService.getCacheOfHash(RedisDataConstant.HASH_ROUTES);
@@ -125,6 +125,5 @@ public class MapService {
         trafficRoutes.sort((Distance r1, Distance r2) -> r1.deviceNo.compareToIgnoreCase(r2.deviceNo));
         return trafficRoutes;
     }
-
 
 }

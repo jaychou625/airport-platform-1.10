@@ -107,9 +107,9 @@ public class MonitorController {
         carInfo.setCarLatitude(locationInfo.getBigDecimal("latitude"));
         carInfo.setCarSpeed(locationInfo.getBigDecimal("speed"));
         carInfo.setReceiveTime(locationInfo.getLong("time"));
-        /*--------------------------保存定位和发送到前端--------------------------*/
-
         /*--------------------------任务和预警轮询--------------------------*/
+        //this.trafficTaskService.handleTask(carInfo, false);
+        System.out.println(carInfo);
         return;
     }
 

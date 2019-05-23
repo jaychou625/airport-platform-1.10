@@ -8,12 +8,11 @@
         <id column="aew_info_seq" property="aewInfoSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_info_aew_seq" property="aewSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_info_car_seq" property="carSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-        <result column="aew_info_driver_seq" property="driverSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="aew_info_driver_name" property="driverName" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="aew_info_plane_seq" property="planeSeq" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="aew_info_time" property="aewInfoTime" javaType="java.util.Date"/>
+        <result column="aew_info_time_stamp" property="aewInfoTimestamp" javaType="java.lang.Long"/>
         <association property="aew" column="aew_info_aew_seq" select="com.br.mapper.AewMapper.find"/>
         <association property="car" column="aew_info_car_seq" select="com.br.mapper.CarMapper.find"/>
-        <association property="driver" column="aew_info_driver_seq" select="com.br.mapper.DriverMapper.find"/>
     </resultMap>
 
     <select id="findAll" resultMap="aewInfoResultMap">
@@ -26,7 +25,7 @@
 
     <insert id="add" parameterType="com.br.entity.task.AewInfo">
         INSERT INTO AP_AEW_INFO(aew_info_aew_seq, aew_info_car_seq, aew_info_driver_seq, aew_info_plane_seq, aew_info_time)
-        VALUES (#{aewSeq}, #{carSeq}, #{driverSeq}, #{planeSeq}, #{aewInfoTime})
+        VALUES (#{aewSeq}, #{carSeq}, #{driverName}, #{planeSeq}, #{aewInfoTime})
     </insert>
 
 </mapper>

@@ -11,7 +11,7 @@ function judgeTrafficIsInAirport(coords) {
 function buildOrFlushPlanePositionObject(planes, source) {
     if (planes.length > 0) {
         $.each(planes, function (index, plane) {
-            let planeFeature = getFeatureBySeq(source, "plane-" + plane.planeAddrCode)
+            let planeFeature = getFeatureBySeq(source, "plane-" + plane.planeSeq)
             let coords = [plane.planeLongitude, plane.planeLatitude]
             if (judgeTrafficIsInAirport(coords)) {
                 if (planeFeature != null) {
@@ -20,7 +20,7 @@ function buildOrFlushPlanePositionObject(planes, source) {
                     featureRotate(planeFeature, calcRad(plane.planeHeading, 97.4))
                 } else {
                     planeFeature = drawPointFeature("plane", coords)
-                    featureSeq(planeFeature, "plane-" + plane.planeAddrCode)
+                    featureSeq(planeFeature, "plane-" + plane.planeSeq)
                     featureAttrs(planeFeature, "trafficType", "plane")
                     featureAttrs(planeFeature, "planeInfo", plane)
                     featureRotate(planeFeature, calcRad(plane.planeHeading, 97.4))
@@ -34,18 +34,18 @@ function buildOrFlushPlanePositionObject(planes, source) {
 }
 
 /*------------------------- 构建或者刷新车辆对象 ----------------------------*/
-function buildOrFlushTrafficPositionObject(car, source) {
-    let carFeature = getFeatureBySeq(source, "car-" + car.deviceNo)
-    let coords = [car.gpsPosition.iLongititude, car.gpsPosition.iLatitude]
+function buildOrFlushTrafficPositionObject(carInfo, source) {
+    let carFeature = getFeatureBySeq(source, "car-" + carInfo.car.deviceNo)
+    let coords = [carInfo.car.gpsPosition.iLongititude, carInfo.car.gpsPosition.iLatitude]
     if (judgeTrafficIsInAirport(coords)) {
         if (carFeature != null) {
-            featureAttrs("carInfo", car)
+            featureAttrs("carInfo", carInfo)
             featurePosition(carFeature, coords)
         } else {
             carFeature = drawPointFeature("car", coords)
-            featureSeq(carFeature, "car-" + car.deviceNo)
+            featureSeq(carFeature, "car-" + carInfo.car.deviceNo)
             featureAttrs(carFeature, "trafficType", "car")
-            featureAttrs(carFeature, "carInfo", car)
+            featureAttrs(carFeature, "carInfo", carInfo)
             addFeature(source, carFeature)
         }
     } else {
