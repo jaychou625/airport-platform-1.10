@@ -1,6 +1,7 @@
 package com.br.service.utils;
 
 import com.br.entity.map.Plane;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ import java.util.List;
  * @Date 2019 03 02
  */
 public class ADSBUtils {
+
+    // 日期工具类
+    @Autowired
+    private DateUtils dateUtils;
 
     /**
      * ADSB 字符串转换为 PlaneBeanList
@@ -58,7 +63,7 @@ public class ADSBUtils {
             plane.setPlaneHeading(new BigDecimal(planeInfos[9]));
             plane.setAckPlaneCode(planeInfos[10]);
             plane.setReceiveTimeStamp(receiveTimeOfLong);
-            plane.setReceiveTime(new Date(receiveTimeOfLong).toLocaleString());
+            plane.setReceiveTime(this.dateUtils.dateToString(new Date(receiveTimeOfLong)));
             planeBeans.add(plane);
         }
         return planeBeans;

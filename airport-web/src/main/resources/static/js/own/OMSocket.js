@@ -15,26 +15,28 @@ function webSocketInitialization() {
         /*------------------------- websocket 消息事件  ----------------------------*/
         websocket.onmessage = function (event) {
             let message = messageFormat(event.data)
-            switch (message.event) {
-                case wsEvents.EVENT_PLANE_POSITION: // 飞机位置事件
-                    buildOrFlushPlanePositionObject(message.data, vectorLayer.getSource())
-                    break
-                case wsEvents.EVENT_CAR_POSITION: // 车辆位置事件
-                    buildOrFlushTrafficPositionObject(message.data, vectorLayer.getSource())
-                    break
+            if (vectorLayer != null || vectorLayer != undefined) {
+                switch (message.event) {
+                    case wsEvents.EVENT_PLANE_POSITION: // 飞机位置事件
+                        buildOrFlushPlanePositionObject(message.data, vectorLayer.getSource())
+                        break
+                    case wsEvents.EVENT_CAR_POSITION: // 车辆位置事件
+                        buildOrFlushTrafficPositionObject(message.data, vectorLayer.getSource())
+                        break
 
-                case wsEvents.EVENT_ROUTE_PLAN: // 路径规划事件
-                    routePlan(message.data, vectorLayer.getSource())
-                    break
-                case wsEvents.EVENT_ROUTE_CROSS: // 冲突点事件
-                    routeCross(message.data, vectorLayer.getSource());
-                    break
-                case wsEvents.EVENT_CLEAN: // 清除事件
-                    removeRoute(vectorLayer.getSource(), message.data)
-                    removeCross(vectorLayer.getSource(), message.data)
-                    break
-                default:
-                    console.log("no other event")
+                    case wsEvents.EVENT_ROUTE_PLAN: // 路径规划事件
+                        routePlan(message.data, vectorLayer.getSource())
+                        break
+                    case wsEvents.EVENT_ROUTE_CROSS: // 冲突点事件
+                        routeCross(message.data, vectorLayer.getSource());
+                        break
+                    case wsEvents.EVENT_CLEAN: // 清除事件
+                        removeRoute(vectorLayer.getSource(), message.data)
+                        removeCross(vectorLayer.getSource(), message.data)
+                        break
+                    default:
+                        console.log("no other event")
+                }
             }
         }
     } else {

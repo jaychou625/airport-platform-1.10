@@ -11,3 +11,9 @@ $(function () {
         }
     })
 })
+
+
+window.onbeforeunload = function (e) {
+    e = e || window.event;
+    console.log("xxxx")
+}

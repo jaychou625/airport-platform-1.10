@@ -12,6 +12,7 @@ import com.br.service.service.redis.RedisService;
 import com.br.service.service.traffic.AewService;
 import com.br.service.service.traffic.PositionService;
 import com.br.service.service.websocket.WSService;
+import com.br.service.utils.DateUtils;
 import com.route.broadcast.ConflictPoint;
 import com.route.broadcast.PositionNotice;
 import com.route.imp.NavPoint;
@@ -60,6 +61,10 @@ public class TrafficTaskService {
     // 任务状态服务
     @Autowired
     private TrafficTaskStateService trafficTaskStateService;
+
+    // 时间工具类
+    @Autowired
+    private DateUtils dateUtils;
 
 
     /**
@@ -282,7 +287,7 @@ public class TrafficTaskService {
         aewInfo.setAewSeq(notice.noticeType);
         aewInfo.setPlaneSeq(taskStateInfo.getFltNo());
         aewInfo.setDriverName(taskStateInfo.getDriverName());
-        aewInfo.setAewInfoTimestamp(notice.calTime);
+        aewInfo.setAewInfoTime(this.dateUtils.longToDate(notice.calTime));
         return aewInfo;
     }
 
@@ -360,14 +365,4 @@ public class TrafficTaskService {
                 return 0;
         }
     }
-
-    /**
-     * 得到任务状态
-     *
-     * @return TaskStateInfo
-     */
-    public TaskStateInfo getTaskState(CarInfo carInfo, boolean isReRoute) {
-        return new TaskStateInfo();
-    }
-
 }

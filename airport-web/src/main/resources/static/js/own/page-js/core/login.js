@@ -18,7 +18,6 @@ function login() {
     if (checkForm()) {
         let formValue = $("#login-form").serialize()
         call("post", "/login", formValue).done(function (result) {
-            console.log(result)
             result = JSON.parse(result.data)
 
             if (result.status === 703) {

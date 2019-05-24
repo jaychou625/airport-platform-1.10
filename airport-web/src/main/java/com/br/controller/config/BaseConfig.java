@@ -2,6 +2,7 @@ package com.br.controller.config;
 
 import com.br.service.utils.ADSBUtils;
 import com.br.service.utils.CrypUtils;
+import com.br.service.utils.DateUtils;
 import com.br.service.utils.FileUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,6 +45,17 @@ public class BaseConfig {
     public CrypUtils crypUtils() {
         return new CrypUtils();
     }
+
+    /**
+     * 时间工具类
+     *
+     * @return CrypUtils
+     */
+    @Bean
+    public DateUtils dateUtils() {
+        return new DateUtils();
+    }
+
 
 
 }

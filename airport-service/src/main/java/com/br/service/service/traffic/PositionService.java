@@ -11,7 +11,6 @@ import com.br.service.service.websocket.WSService;
 import com.route.imp.PositionPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -51,12 +50,7 @@ public class PositionService {
             this.sendPlanePositionObject(planes);
             Map<String, Object> planeMap = new HashMap<>();
             for (Plane plane : planes) {
-                String planeSeq = plane.getPlaneSeq();
-                if (StringUtils.isEmpty(planeSeq)) {
-                    planeMap.put(plane.getPlaneAddrCode(), plane);
-                } else {
-                    planeMap.put(plane.getPlaneSeq(), plane);
-                }
+                planeMap.put(plane.getPlaneSeq(), plane);
                 this.planeMapper.add(plane);
             }
             this.redisService.saveCacheOfHash(RedisDataConstant.HASH_PLANE, planeMap);

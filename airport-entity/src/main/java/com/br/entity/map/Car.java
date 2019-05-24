@@ -52,5 +52,9 @@ public class Car {
     String carValue;
     @Getter
     @Setter
+    private String deviceIMEI;
+    @Getter
+    @Setter
     String carSerCdt;
+
 }

@@ -108,7 +108,6 @@ public class MonitorController {
         carInfo.setCarSpeed(locationInfo.getBigDecimal("speed"));
         carInfo.setReceiveTime(locationInfo.getLong("time"));
         /*--------------------------任务和预警轮询--------------------------*/
-        //this.trafficTaskService.handleTask(carInfo, false);
         System.out.println(carInfo);
         return;
     }

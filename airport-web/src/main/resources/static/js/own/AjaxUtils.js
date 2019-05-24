@@ -35,7 +35,6 @@ function call(method, url, params) {
         },
         complete: function (xmr, textStatus) {
             let sessionStatus = xmr.getResponseHeader("session-status")
-            console.log(sessionStatus)
             if (sessionStatus == "timeout") {
                 window.location.href = "/login"
             }

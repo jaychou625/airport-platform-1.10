@@ -1,6 +1,7 @@
 package com.br.controller.config;
 
 import com.br.service.message.AMQReceiver;
+import com.br.service.message.XYXReceiver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,9 +29,9 @@ public class MQConfig {
      *
      * @return XYXReceiver
      */
-   /* @Bean
+    @Bean
     public XYXReceiver xyxReceiver() {
         return new XYXReceiver();
-    }*/
+    }
 
 }

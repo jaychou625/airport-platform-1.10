@@ -10,7 +10,7 @@
         <result column="aew_info_car_seq" property="carSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         <result column="aew_info_driver_name" property="driverName" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="aew_info_plane_seq" property="planeSeq" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result column="aew_info_time_stamp" property="aewInfoTimestamp" javaType="java.lang.Long"/>
+        <result column="aew_info_time" property="aewInfoTime"/>
         <association property="aew" column="aew_info_aew_seq" select="com.br.mapper.AewMapper.find"/>
         <association property="car" column="aew_info_car_seq" select="com.br.mapper.CarMapper.find"/>
     </resultMap>

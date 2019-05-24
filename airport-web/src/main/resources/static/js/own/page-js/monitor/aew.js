@@ -36,7 +36,7 @@ function loadAewInfoTableData(currentPage, pageSize) {
                     title: "车型", name: "car.carType", align: "center"
                 },
                 {
-                    title: "司机", name: "driver.driverName", align: "center"
+                    title: "司机", name: "driverName", align: "center"
                 },
                 {
                     title: "场景说明", name: "aew.aewScene", align: "center"
@@ -118,7 +118,7 @@ function aewDetail(aewInfo) {
             "</div>" +
             "<div class='aewDetail-box-body-car-item'>" +
             "<div class='pull-left aewDetail-box-body-car-item-title'>司机：</div>" +
-            "<div class='pull-right aewDetail-box-body-car-item-body'>" + aewInfo.driver.driverName + "</div>" +
+            "<div class='pull-right aewDetail-box-body-car-item-body'>" + aewInfo.driverName + "</div>" +
             "</div>" +
             "</div>" +
             "<div class='pull-left aewDetail-box-body-car-right'>" +
