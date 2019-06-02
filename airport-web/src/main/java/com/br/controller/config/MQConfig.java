@@ -18,11 +18,11 @@ public class MQConfig {
      *
      * @return AMQReceiver
      */
-    @Bean
+   /* @Bean
     public AMQReceiver amqReceiver() {
         return new AMQReceiver();
     }
-
+*/
     /**
      * XYX消息接收
      *

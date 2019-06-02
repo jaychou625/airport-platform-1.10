@@ -1,3 +1,4 @@
+/*
 package com.br.service.message;
 
 import com.br.service.constant.MQConstant;
@@ -8,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.File;
 import java.nio.charset.Charset;
 
+*/
 /**
  * XYX 消息接收
  *
  * @Author Zero
  * @Date 2019 02 26
- */
+ *//*
+
 public class XYXReceiver {
 
     static int MyMsgCount = 0;
@@ -86,3 +89,4 @@ public class XYXReceiver {
     }
 
 }
+*/
