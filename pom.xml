@@ -146,6 +146,7 @@
     </dependencies>
 
     <modules>
+        <module>airport-log</module>
         <module>airport-entity</module>
         <module>airport-service</module>
         <module>airport-web</module>

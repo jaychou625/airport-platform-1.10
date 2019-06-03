@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
     <parent>
         <groupId>com.br</groupId>
         <artifactId>airport-platform</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.br</groupId>
-    <artifactId>airport-entity</artifactId>
+    <artifactId>airport-log</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>airport-entity</name>
-    <description>airport entity</description>
-    <packaging>jar</packaging>
+    <name>airport-log</name>
+    <description>airport log</description>
 </project>
