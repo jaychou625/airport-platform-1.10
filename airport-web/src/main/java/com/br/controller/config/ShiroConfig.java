@@ -1,8 +1,8 @@
 package com.br.controller.config;
 
-import com.br.service.constant.RequestRouteConstant;
-import com.br.service.shiro.APShiroRealm;
-import com.br.service.shiro.filter.LoginFilter;
+import com.br.constant.RequestRouteConstant;
+import com.br.shiro.APShiroRealm;
+import com.br.shiro.filter.LoginFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
@@ -11,6 +11,7 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
@@ -68,6 +69,18 @@ public class ShiroConfig {
     }
 
     /**
+     * 自定义SessionIdCookie 防止重复异常
+     *
+     * @return SimpleCookie
+     */
+    @Bean
+    public SimpleCookie sessionIdCookie() {
+        SimpleCookie sessionIdCookie = new SimpleCookie();
+        sessionIdCookie.setName("AP-JSESSIONID");
+        return sessionIdCookie;
+    }
+
+    /**
      * WebSessionManager 实例
      *
      * @return DefaultWebSessionManager
@@ -78,6 +91,10 @@ public class ShiroConfig {
         webSessionManager.setGlobalSessionTimeout(DefaultWebSessionManager.DEFAULT_GLOBAL_SESSION_TIMEOUT * 2);
         webSessionManager.setSessionDAO(memorySessionDAO());
         webSessionManager.setSessionIdUrlRewritingEnabled(false);
+        webSessionManager.setSessionValidationInterval(webSessionManager.getGlobalSessionTimeout());
+        webSessionManager.setSessionValidationSchedulerEnabled(true);
+        webSessionManager.setSessionIdCookieEnabled(true);
+        webSessionManager.setSessionIdCookie(sessionIdCookie());
         return webSessionManager;
     }
 

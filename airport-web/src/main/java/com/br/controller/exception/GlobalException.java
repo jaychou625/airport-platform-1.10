@@ -1,6 +1,6 @@
 package com.br.controller.exception;
 
-import com.br.service.constant.ViewConstant;
+import com.br.constant.ViewConstant;
 import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

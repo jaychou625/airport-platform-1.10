@@ -1,9 +1,9 @@
 package com.br.controller.config;
 
-import com.br.service.utils.ADSBUtils;
-import com.br.service.utils.CrypUtils;
-import com.br.service.utils.DateUtils;
-import com.br.service.utils.FileUtils;
+import com.br.utils.ADSBUtils;
+import com.br.utils.CrypUtils;
+import com.br.utils.DateUtils;
+import com.br.utils.FileUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

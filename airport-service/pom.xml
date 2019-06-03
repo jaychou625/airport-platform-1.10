@@ -17,6 +17,9 @@
     <properties>
         <airport-entity.version>0.0.1-SNAPSHOT</airport-entity.version>
         <airport-mapper.version>0.0.1-SNAPSHOT</airport-mapper.version>
+        <airport-websocket.version>0.0.1-SNAPSHOT</airport-websocket.version>
+        <airport-utils.version>0.0.1-SNAPSHOT</airport-utils.version>
+        <airport-constant.version>0.0.1-SNAPSHOT</airport-constant.version>
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +32,20 @@
             <artifactId>airport-mapper</artifactId>
             <version>${airport-mapper.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-websocket</artifactId>
+            <version>${airport-websocket.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-utils</artifactId>
+            <version>${airport-utils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-constant</artifactId>
+            <version>${airport-constant.version}</version>
+        </dependency>
     </dependencies>
 </project>

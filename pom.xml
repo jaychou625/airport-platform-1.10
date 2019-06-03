@@ -93,11 +93,11 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-   <!--     <dependency>
+        <dependency>
             <groupId>com.tongtech</groupId>
             <artifactId>tlclient</artifactId>
             <version>${tlclient.version}</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
@@ -150,6 +150,12 @@
         <module>airport-service</module>
         <module>airport-web</module>
         <module>airport-mapper</module>
+        <module>airport-websocket</module>
+        <module>airport-queue</module>
+        <module>airport-utils</module>
+        <module>airport-scheduler</module>
+        <module>airport-constant</module>
+        <module>airport-shiro</module>
     </modules>
 
     <!--指定使用maven打包-->

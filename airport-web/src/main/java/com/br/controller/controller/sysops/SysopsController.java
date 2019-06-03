@@ -1,12 +1,12 @@
 package com.br.controller.controller.sysops;
 
+import com.br.constant.RequestRouteConstant;
+import com.br.constant.ViewConstant;
+import com.br.constant.enumeration.CommonEnumeration;
 import com.br.entity.map.Car;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
-import com.br.service.constant.RequestRouteConstant;
-import com.br.service.constant.ViewConstant;
-import com.br.service.enumeration.CommonEnumeration;
-import com.br.service.service.traffic.CarService;
+import com.br.service.traffic.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,7 +1,5 @@
 package com.br.controller.config;
 
-import com.br.service.message.AMQReceiver;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**

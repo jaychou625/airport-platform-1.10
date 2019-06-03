@@ -17,6 +17,7 @@
         <airport-entity.version>0.0.1-SNAPSHOT</airport-entity.version>
         <airport-service.version>0.0.1-SNAPSHOT</airport-service.version>
         <airport-mapper.version>0.0.1-SNAPSHOT</airport-mapper.version>
+        <airport-shiro.version>0.0.1-SNAPSHOT</airport-shiro.version>
     </properties>
 
     <dependencies>
@@ -34,6 +35,11 @@
             <groupId>com.br</groupId>
             <artifactId>airport-mapper</artifactId>
             <version>${airport-mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-shiro</artifactId>
+            <version>${airport-shiro.version}</version>
         </dependency>
     </dependencies>
 

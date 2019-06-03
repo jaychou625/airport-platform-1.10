@@ -1,8 +1,8 @@
 package com.br.controller.config;
 
-import com.br.service.service.task.handler.ApronDataHandler;
-import com.br.service.service.task.handler.XYXDataHandler;
-import com.br.service.service.task.handler.XYXXmlVisitor;
+import com.br.service.task.handler.ApronDataHandler;
+import com.br.service.task.handler.XYXDataHandler;
+import com.br.service.task.handler.XYXXmlVisitor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,6 +1,6 @@
 package com.br.controller.config;
 
-import com.br.service.utils.FileUtils;
+import com.br.utils.FileUtils;
 import com.route.broadcast.RealNavServer;
 import com.route.imp.NavEngine;
 import org.springframework.context.annotation.Bean;
