@@ -2,6 +2,7 @@ package com.br.mapper;
 
 import com.br.entity.task.TaskObject;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 任务对象 Mapper
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @Date 2019 03 01
  */
 @Mapper
+@Transactional
 public interface TaskObjectMapper {
 
     /**

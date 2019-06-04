@@ -3,16 +3,17 @@ package com.br.controller.controller.core;
 import com.br.constant.RequestRouteConstant;
 import com.br.constant.ViewConstant;
 import com.br.constant.enumeration.CommonEnumeration;
-import com.br.controller.controller.BaseController;
 import com.br.entity.access.Menu;
 import com.br.entity.access.Role;
 import com.br.entity.core.User;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
+import com.br.log.annotation.BizOperation;
 import com.br.service.aew.AewService;
 import com.br.service.user.MenuService;
 import com.br.service.user.RoleService;
 import com.br.utils.CrypUtils;
+import com.br.utils.SubjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ import java.util.List;
  * @Date 2019 02 21
  */
 @Controller
-public class CoreController extends BaseController {
+public class CoreController {
 
     // 角色服务
     @Autowired
@@ -46,11 +47,16 @@ public class CoreController extends BaseController {
     @Autowired
     private CrypUtils crypUtils;
 
+    // Subject工具类
+    @Autowired
+    private SubjectUtils subjectUtils;
+
     /**
      * 登录视图
      *
      * @return 视图
      */
+    @BizOperation("request view")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_LOGIN)
     public String login() {
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_LOGIN;
@@ -62,10 +68,11 @@ public class CoreController extends BaseController {
      *
      * @return 视图
      */
+    @BizOperation("request view")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MAIN, method = RequestMethod.GET)
     public String mainPage(Model model) {
         Result result = new Result();
-        User user = this.currentUser();
+        User user = this.subjectUtils.currentUser();
         Role role = this.roleService.findRolesByUserSeq(user.getUserSeq()).get(0);
         List<Menu> menus = this.menuService.findAll();
         result.getData().put("user", user);
@@ -80,6 +87,7 @@ public class CoreController extends BaseController {
      *
      * @return 视图
      */
+    @BizOperation("request view")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_HOME, method = RequestMethod.GET)
     public String homePage(Model model) {
         Result result = new Result();
@@ -96,6 +104,7 @@ public class CoreController extends BaseController {
      *
      * @return 视图
      */
+    @BizOperation("request view")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_UNAUTHED, method = RequestMethod.GET)
     public String unAuthPage() {
         return ViewConstant.VIEW_DIR_CORE + ViewConstant.VIEW_FILE_CORE_UNAUTHED;

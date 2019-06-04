@@ -6,6 +6,7 @@ import com.br.constant.enumeration.CommonEnumeration;
 import com.br.entity.map.Car;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
+import com.br.log.annotation.BizOperation;
 import com.br.service.traffic.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,7 @@ public class SysopsController {
      * @param model 响应结果集
      * @return 视图
      */
+    @BizOperation("请求车辆视图")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR, method = RequestMethod.GET)
     public String carPage(Model model) {
         Result result = new Result();
@@ -50,6 +52,7 @@ public class SysopsController {
      * @param carSeq 车辆序号
      * @return Car
      */
+    @BizOperation("请求单个车辆信息")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_SYSOPS + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_CAR + RequestRouteConstant.REQUEST_ROUTE_SYSOPS_FIND_CAR, method = RequestMethod.GET)
     @ResponseBody
     public Car car(@RequestParam("carSeq") Integer carSeq) {

@@ -3,6 +3,7 @@ package com.br.controller.config;
 import com.br.constant.RequestRouteConstant;
 import com.br.shiro.APShiroRealm;
 import com.br.shiro.filter.LoginFilter;
+import com.br.utils.SubjectUtils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
@@ -16,7 +17,6 @@ import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -30,6 +30,16 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+    /**
+     * Subject 工具类
+     *
+     * @return SubjectUtils
+     */
+    @Bean
+    public SubjectUtils subjectUtils() {
+        return new SubjectUtils();
+    }
 
 
     /**

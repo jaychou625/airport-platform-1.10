@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.InterfaceLogMapper">
+
+    <resultMap id="interfaceLogResultMap" type="com.br.entity.log.InterfaceLog">
+        <id column="interface_log_seq" property="interfaceLogSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="interface_log_tier" property="interfaceLogTier" javaType="java.lang.Integer"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_user_name" property="interfaceLogUserName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_biz_operation" property="interfaceLogBizOperation" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_class_name" property="interfaceLogClassName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_method_name" property="interfaceLogMethodName" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_args" property="interfaceLogArgs" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="interface_log_request_ip" property="interfaceLogRequestIp" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_request_url" property="interfaceLogRequestUrl" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result column="interface_log_request_time" property="interfaceLogTime"/>
+        <result column="interface_log_request_timestamp" property="interfaceLogTimestamp"
+                javaType="java.lang.Long"></result>
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.br.entity.log.InterfaceLog">
+        INSERT INTO ap_interface_log(interface_log_tier,
+                                     interface_log_user_name,
+                                     interface_log_biz_operation,
+                                     interface_log_class_name,
+                                     interface_log_method_name,
+                                     interface_log_args,
+                                     interface_log_request_ip,
+                                     interface_log_request_url,
+                                     interface_log_request_time,
+                                     interface_log_request_timestamp)
+        VALUES (#{interfaceLogTier},
+                #{interfaceLogUserName},
+                #{interfaceLogBizOperation},
+                #{interfaceLogClassName},
+                #{interfaceLogMethodName},
+                #{interfaceLogArgs},
+                #{interfaceLogRequestIp},
+                #{interfaceLogRequestUrl},
+                #{interfaceLogTime},
+                #{interfaceLogTimestamp})
+    </insert>
+
+</mapper>

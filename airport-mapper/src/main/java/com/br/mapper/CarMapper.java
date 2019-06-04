@@ -4,6 +4,7 @@ import com.br.entity.map.Car;
 import com.br.entity.map.CarInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @Date 2019 03 01
  */
 @Mapper
+@Transactional
 public interface CarMapper {
 
 

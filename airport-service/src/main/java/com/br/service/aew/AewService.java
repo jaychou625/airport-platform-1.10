@@ -37,7 +37,6 @@ public class AewService {
      * @param aewInfo 预警信息实例
      */
     public void add(AewInfo aewInfo) {
-        aewInfo.setPlaneSeq("UT86896");
         this.aewInfoMapper.add(aewInfo);
     }
 

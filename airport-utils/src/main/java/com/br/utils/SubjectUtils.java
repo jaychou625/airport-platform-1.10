@@ -1,17 +1,13 @@
-package com.br.controller.controller;
+package com.br.utils;
 
 import com.br.entity.core.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
 /**
- * 基础控制器
- *
- * @Author Zero
- * @Date 2019 02 21
+ * Shiro Subject 工具类
  */
-public class BaseController {
-
+public class SubjectUtils {
 
     /**
      * 获取当前Subject对象
@@ -30,5 +26,4 @@ public class BaseController {
     public User currentUser() {
         return (User) this.currentSubject().getPrincipal();
     }
-
 }

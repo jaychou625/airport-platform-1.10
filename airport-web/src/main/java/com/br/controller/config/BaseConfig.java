@@ -1,9 +1,6 @@
 package com.br.controller.config;
 
-import com.br.utils.ADSBUtils;
-import com.br.utils.CrypUtils;
-import com.br.utils.DateUtils;
-import com.br.utils.FileUtils;
+import com.br.utils.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -56,6 +53,16 @@ public class BaseConfig {
         return new DateUtils();
     }
 
+
+    /**
+     * IP地址工具类
+     *
+     * @return CrypUtils
+     */
+    @Bean
+    public IpAddrUtils ipAddrUtils() {
+        return new IpAddrUtils();
+    }
 
 
 }

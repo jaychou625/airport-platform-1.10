@@ -1,15 +1,16 @@
 package com.br.controller.controller.monitor;
 
 import com.alibaba.fastjson.JSONObject;
+import com.br.constant.RequestRouteConstant;
+import com.br.constant.ViewConstant;
+import com.br.constant.enumeration.CommonEnumeration;
 import com.br.entity.map.Car;
 import com.br.entity.map.CarInfo;
 import com.br.entity.utils.BreadCrumb;
 import com.br.entity.utils.Result;
-import com.br.constant.RequestRouteConstant;
-import com.br.constant.ViewConstant;
-import com.br.constant.enumeration.CommonEnumeration;
-import com.br.service.task.TrafficTaskService;
+import com.br.log.annotation.BizOperation;
 import com.br.service.aew.AewService;
+import com.br.service.task.TrafficTaskService;
 import com.br.service.traffic.PositionService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -46,6 +47,7 @@ public class MonitorController {
      * @param model 响应结果集
      * @return 视图
      */
+    @BizOperation("request view")
     @RequiresPermissions(RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW)
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW, method = RequestMethod.GET)
     public String aewPage(Model model) {
@@ -55,12 +57,13 @@ public class MonitorController {
 
     /**
      * /**
-     * 预警监管数据集合
+     * 预警信息数据集合
      *
      * @param currentPage 当前页
      * @param pageSize    页面数量
      * @return List<AewInfo>
      */
+    @BizOperation("request data")
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW + RequestRouteConstant.REQUEST_ROUTE_MONITOR_AEW_List, method = RequestMethod.GET)
     @ResponseBody
     public Result aewList(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize) {
@@ -74,11 +77,12 @@ public class MonitorController {
     }
 
     /**
-     * 交通监管
+     * 交通监管视图
      *
      * @param model 响应结果集
      * @return 视图
      */
+    @BizOperation("request view")
     @RequiresPermissions({RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC})
     @RequestMapping(value = RequestRouteConstant.REQUEST_ROUTE_MONITOR + RequestRouteConstant.REQUEST_ROUTE_MONITOR_TRAFFIC, method = RequestMethod.GET)
     public String trafficPage(Model model) {

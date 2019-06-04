@@ -13,4 +13,22 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>airport-log</name>
     <description>airport log</description>
+
+    <properties>
+        <airport-utils.version>0.0.1-SNAPSHOT</airport-utils.version>
+        <airport-service.version>0.0.1-SNAPSHOT</airport-service.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-utils</artifactId>
+            <version>${airport-utils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-service</artifactId>
+            <version>${airport-service.version}</version>
+        </dependency>
+    </dependencies>
 </project>
