@@ -4,6 +4,12 @@ import com.br.entity.task.FlightInfo;
 import org.dom4j.Element;
 import org.dom4j.VisitorSupport;
 
+/**
+ * XYX XML 数据观察者
+ *
+ * @Author Zero
+ * @Date 2019 06 05
+ */
 public class XYXXmlVisitor extends VisitorSupport {
 
     public static FlightInfo flightInfo = new FlightInfo();

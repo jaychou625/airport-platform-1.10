@@ -1,6 +1,6 @@
 package com.br.queue;
 
-import com.br.service.constant.MQConstant;
+import com.br.constant.MQConstant;
 import com.br.service.task.handler.XYXDataHandler;
 import com.tongtech.tlq.base.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ public class XYXReceiver {
     private TlqQCU tlqQcu = null;
     private Thread xyxThread;
 
+    /*--------------XYX数据处理器------------------*/
     @Autowired
     private XYXDataHandler xyxDataHandler;
 
@@ -24,7 +25,7 @@ public class XYXReceiver {
             this.tlqConnContext = new TlqConnContext();
             this.tlqConnContext.HostName = "10.24.1.104";
             this.tlqConnContext.ListenPort = 10261;
-            // 创建当日目录
+            /*--------------如果存放的目录不存在 创建目录------------------*/
             File fileDir = new File("E:\\xyx_xml");
             if (!fileDir.exists()) {
                 fileDir.mkdirs();

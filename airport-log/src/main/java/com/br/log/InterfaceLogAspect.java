@@ -1,9 +1,9 @@
 package com.br.log;
 
+import com.br.constant.MQConstant;
 import com.br.entity.core.User;
 import com.br.entity.log.InterfaceLog;
 import com.br.log.annotation.BizOperation;
-import com.br.service.log.LogService;
 import com.br.utils.DateUtils;
 import com.br.utils.IpAddrUtils;
 import com.br.utils.SubjectUtils;
@@ -12,8 +12,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
@@ -34,6 +34,9 @@ import java.util.Date;
 @Aspect
 public class InterfaceLogAspect {
 
+    // RabbitTemplate
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     // IP地址工具类
     @Autowired
@@ -46,11 +49,6 @@ public class InterfaceLogAspect {
     // Subject 工具类
     @Autowired
     private SubjectUtils subjectUtils;
-
-    // 日志服务
-    @Autowired
-    private LogService logService;
-
 
     /**
      * controller 切入点
@@ -90,8 +88,19 @@ public class InterfaceLogAspect {
         /*--------------获取请求参数------------------*/
         Object[] requestArgs = joinPoint.getArgs();
         String requestArgsString = "";
-        for(Object o : requestArgs){
+        for (Object o : requestArgs) {
             requestArgsString += o.toString() + ",";
+        }
+        /*--------------截取参数并且判断判断参数是否合法------------------*/
+        int rAsLen = requestArgsString.length();
+        if (rAsLen > 0) {
+            requestArgsString = requestArgsString.substring(0, rAsLen - 1);
+        }
+        if (requestArgsString.equals("{}")) {
+            requestArgsString = "";
+        }
+        if (!StringUtils.isEmpty(requestArgsString) && !requestArgsString.equals("{}") && rAsLen > 1) {
+            requestArgsString = requestArgsString.substring(0, rAsLen - 1);
         }
         /*--------------获取HTTP请求属性------------------*/
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
@@ -107,7 +116,7 @@ public class InterfaceLogAspect {
         Long requestTimestamp = 0L;
         if (StringUtils.isEmpty(requestTime)) {
             requestTimestamp = System.currentTimeMillis();
-        }else{
+        } else {
             requestTimestamp = Long.parseLong(requestTime);
         }
         /*--------------判断原始请求时间转日期类型-----------------*/
@@ -127,13 +136,6 @@ public class InterfaceLogAspect {
         interfaceLog.setInterfaceLogBizOperation(requestBizOperation);
         interfaceLog.setInterfaceLogClassName(requestClassName);
         interfaceLog.setInterfaceLogMethodName(requestMethodName);
-        /*--------------判断参数是否为空-----------------*/
-        if(requestArgsString.equals("{},")){
-            requestArgsString = "";
-        }
-        if(!StringUtils.isEmpty(requestArgsString) && !requestArgsString.equals("{},")){
-            requestArgsString = requestArgsString.substring(0, requestArgsString.length() - 1);
-        }
         interfaceLog.setInterfaceLogArgs(requestArgsString);
         interfaceLog.setInterfaceLogRequestIp(requestIp);
         interfaceLog.setInterfaceLogRequestUrl(requestUrl);
@@ -141,7 +143,7 @@ public class InterfaceLogAspect {
         interfaceLog.setInterfaceLogTimestamp(requestTimestamp);
         interfaceLog.setInterfaceLogUserName(requestUserName);
 
-        /*--------------存储日志到数据库-----------------*/
-        this.logService.add(interfaceLog);
+        /*--------------发送至日志队列消息-----------------*/
+        this.rabbitTemplate.convertAndSend(MQConstant.EXCHANGE_TOPIC, MQConstant.TOPIC_INTERFACE_LOG, interfaceLog);
     }
 }

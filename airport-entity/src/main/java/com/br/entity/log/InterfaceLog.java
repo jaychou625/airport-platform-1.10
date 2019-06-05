@@ -2,6 +2,7 @@ package com.br.entity.log;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class InterfaceLog {
+public class InterfaceLog implements Serializable {
     @Getter
     @Setter
     private Integer interfaceLogSeq;

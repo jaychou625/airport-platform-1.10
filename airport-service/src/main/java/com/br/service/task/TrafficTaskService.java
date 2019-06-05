@@ -1,12 +1,14 @@
 package com.br.service.task;
 
 import com.alibaba.fastjson.JSON;
+import com.br.constant.MQConstant;
+import com.br.constant.RedisDataConstant;
+import com.br.constant.WSMessageConstant;
 import com.br.entity.map.CarInfo;
 import com.br.entity.task.AewInfo;
 import com.br.entity.task.TaskStateInfo;
+import com.br.entity.task.WorkCondition;
 import com.br.entity.websocket.WSMessage;
-import com.br.constant.RedisDataConstant;
-import com.br.constant.WSMessageConstant;
 import com.br.service.aew.AewService;
 import com.br.service.map.MapService;
 import com.br.service.redis.RedisService;
@@ -18,6 +20,7 @@ import com.route.broadcast.PositionNotice;
 import com.route.imp.NavPoint;
 import com.route.imp.PositionPoint;
 import com.route.imp.nav.Distance;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -66,6 +69,9 @@ public class TrafficTaskService {
     @Autowired
     private DateUtils dateUtils;
 
+    // RabbitTemplate
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * 处理任务
@@ -124,6 +130,10 @@ public class TrafficTaskService {
                 for (PositionNotice notice : positionNotices) {
                     /*--------------添加工况预警信息------------------*/
                     this.aewService.add(this.buildAewInfo(taskStateInfo, notice));
+                    /*--------------推送工况到预发送处------------------*/
+                    WorkCondition workCondition = new WorkCondition(carInfo, notice);
+                    /*--------------推送工况到预发送处------------------*/
+                    this.rabbitTemplate.convertAndSend(MQConstant.EXCHANGE_TOPIC, MQConstant.TOPIC_WORK_CONDITION, workCondition);
                     /*--------------偏离路径 路径重规划------------------*/
                     if (notice.noticeType == PositionNotice.TYPE_FARAWAY) {
                         /*--------------清除事件------------------*/
@@ -205,6 +215,12 @@ public class TrafficTaskService {
         }
     }
 
+
+    /**
+     * 获取在任务中的交通设备位置与路径
+     *
+     * @return Collection[]
+     */
     public Collection[] getInTaskPositionsAndRoutes() {
         /*--------------在任务中的车辆信息集合------------------*/
         Vector<PositionPoint> inTaskCarPositions = new Vector();
@@ -228,7 +244,6 @@ public class TrafficTaskService {
                 inTaskCarPositions.sort((PositionPoint p1, PositionPoint p2) -> p1.deviceNo.compareToIgnoreCase(p2.deviceNo));
                 routes.sort((Distance d1, Distance d2) -> d1.deviceNo.compareToIgnoreCase(d2.deviceNo));
             }
-
         }
         /*--------------返回集合数组------------------*/
         return new Collection[]{inTaskCarPositions, routes};
@@ -295,7 +310,7 @@ public class TrafficTaskService {
      * 获取路径规划
      *
      * @param trafficSeq 交通工具序号
-     * @return
+     * @return Distance
      */
     public Distance getRoutePlan(String trafficSeq) {
         return (Distance) this.redisService.getCacheOfHash(RedisDataConstant.HASH_ROUTES, trafficSeq);

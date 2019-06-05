@@ -68,3 +68,5 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+logging.level.org.springframework.boot.autoconfigure: ERROR

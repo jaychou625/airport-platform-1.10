@@ -1,9 +1,9 @@
 package com.br.queue;
 
-import com.br.service.constant.MQConstant;
+import com.br.constant.MQConstant;
 import com.br.service.redis.RedisService;
 import com.br.service.traffic.PositionService;
-import com.br.service.utils.ADSBUtils;
+import com.br.utils.ADSBUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 
@@ -35,6 +35,5 @@ public class AMQReceiver {
     @JmsListener(destination = MQConstant.TOPIC_ADSB_RECEIVER)
     public void receiveADSBInfo(String planes) {
         this.positionService.savePlanesInfo(aDSBUtils.toPlaneList(planes));
-
     }
 }
