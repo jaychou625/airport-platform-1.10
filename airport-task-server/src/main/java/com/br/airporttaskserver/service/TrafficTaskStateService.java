@@ -1,4 +1,4 @@
-package com.br.service.task;
+package com.br.airporttaskserver.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;

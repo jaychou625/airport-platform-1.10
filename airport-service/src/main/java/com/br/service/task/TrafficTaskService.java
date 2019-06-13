@@ -1,6 +1,7 @@
 package com.br.service.task;
 
 import com.alibaba.fastjson.JSON;
+import com.br.airporttaskserver.service.TrafficTaskStateService;
 import com.br.constant.MQConstant;
 import com.br.constant.RedisDataConstant;
 import com.br.constant.WSMessageConstant;

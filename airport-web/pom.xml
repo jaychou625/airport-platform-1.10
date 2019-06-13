@@ -53,6 +53,12 @@
             <artifactId>airport-queue</artifactId>
             <version>${airport-queue.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-task-server</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -47,5 +47,11 @@
             <artifactId>airport-constant</artifactId>
             <version>${airport-constant.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.br</groupId>
+            <artifactId>airport-task-server</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

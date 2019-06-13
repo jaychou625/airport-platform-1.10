@@ -64,7 +64,6 @@ public class ApronDataHandler {
             jsonTaskObjects = jsonObject.getJSONArray("Data");
             for (Object jsonTaskObject : jsonTaskObjects) {
                 TaskObject taskObject = ((JSONObject) jsonTaskObject).toJavaObject(TaskObject.class);
-
                 //redis
                 Jedis jedis = new Jedis("localhost",6379);
                 jedis.select(4);
