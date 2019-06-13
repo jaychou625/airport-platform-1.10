@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.AewMapper">
+
+    <resultMap id="aewResultMap" type="com.br.entity.task.Aew">
+        <id column="aew_seq" property="aewSeq" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="aew_level" property="aewLevel" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="aew_scene" property="aewScene" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="aewResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM AP_AEW WHERE aew_seq = #{aewSeq}
+    </select>
+</mapper>
