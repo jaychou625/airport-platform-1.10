@@ -1,8 +1,11 @@
 package com.br.airportequipmentcommunication.netty;
 
 import com.alibaba.fastjson.JSON;
+import com.br.airportequipmentcommunication.entity.GPSInfo;
 import com.br.airportequipmentcommunication.entity.TcpInfo;
+import com.br.airportequipmentcommunication.service.GPSService;
 import com.br.airportequipmentcommunication.service.TcpService;
+import com.br.airportequipmentcommunication.service.impl.GPSServiceImpl;
 import com.br.airportequipmentcommunication.service.impl.TcpServiceImpl;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -23,6 +26,7 @@ public class TcpServerHandler extends ChannelInboundHandlerAdapter {
     Object obj = null;
     String messageId = "";
     ByteBuf in = null;
+    GPSInfo gpsInfo = null;
     //收到数据时调用
     @Override
     public  void channelRead(ChannelHandlerContext ctx, Object  msg) throws Exception {
@@ -81,7 +85,9 @@ public class TcpServerHandler extends ChannelInboundHandlerAdapter {
         //StaticVar.chc = ctx;
         super.channelActive(ctx);
     }
-    //实时存储redis
+
+
+    //操作
     public void todoConnection(String entireInfo){
         //根据有效信息生成tcp数据对象，后续解析要用
         String infometion = entireInfo;
@@ -99,11 +105,16 @@ public class TcpServerHandler extends ChannelInboundHandlerAdapter {
 //            ultrasonicRadarProtocal = radarProtocalService.getRadarInfo(tcpInfo);
         }else if(tcpInfo.getInfoType().equals("02")){
             //GPS协议
+            GPSService gpsService = new GPSServiceImpl();
+            gpsInfo = gpsService.getGPSInfo(tcpInfo);
+            //调用平台方法获取工况
+
+            //判断工况情况如果有内容则回写
         }else{
             //协议有误
         }
 
-        //存储数据库操作
+
 //        if(ultrasonicRadarProtocal != null){
 //            map.put(tcpInfo.getUnixTime(), JSON.toJSONString(ultrasonicRadarProtocal));
 //            Jedis jedis = new Jedis("localhost",6379);
