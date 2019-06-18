@@ -81,7 +81,7 @@ public class TrafficTaskService {
      */
     public void handleTask(CarInfo carInfo, boolean isReRoute) {
         /*--------------获取任务状态------------------*/
-        TaskStateInfo taskStateInfo = this.trafficTaskStateService.getTaskState(carInfo, isReRoute);
+        TaskStateInfo taskStateInfo = this.trafficTaskStateService.getTaskState(carInfo, isReRoute,"");
         /*--------------构建位置坐标------------------*/
         PositionPoint positionPoint = this.buildPositionPoint(carInfo);
         /*--------------存入位置------------------*/

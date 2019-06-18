@@ -1,10 +1,36 @@
 package com.br.airportequipmentcommunication.entity;
 
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class GPSInfo {
+    @Getter
+    @Setter
     private String id;
-    private String latitude;
+    @Getter
+    @Setter
+    private Double latitude;
+    @Getter
+    @Setter
     private String latitudeDirection;
-    private String longitude;
+    @Getter
+    @Setter
+    private Double longitude;
+    @Getter
+    @Setter
     private String longitudeDirection;
-    private String courseDigital;
+    @Getter
+    @Setter
+    private Double courseAngle;
+    @Getter
+    @Setter
+    private Double speed;
+    @Getter
+    @Setter
+    private Double magneticDeclination;
+    @Getter
+    @Setter
+    private String magneticDeclinationDirection;
 }

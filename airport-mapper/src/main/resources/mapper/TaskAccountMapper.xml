@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.TaskAccountMapper">
+
+    <select id="selectByAccount" parameterType="java.lang.String" resultType="String">
+        SELECT ap_task_account.user_name FROM ap_task_account WHERE ap_task_account.account = #{account}
+    </select>
+</mapper>

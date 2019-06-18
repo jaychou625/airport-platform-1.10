@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.mapper.EquipmentInfoMapper">
+
+    <resultMap id="equipmentInfoResultMap" type="com.br.entity.taskState.EquipmentInfo">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="app_Id" property="app_Id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="account" property="account" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="dev_No" property="dev_No" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="imei" property="imei" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="wifi_Mac" property="wifi_Mac" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="login_Time" property="login_Time" javaType="java.util.Date"/>
+        <result column="logout_Time" property="logout_Time" javaType="java.util.Date"/>
+        <result column="status" property="status" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="guid" property="guid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="sim_No" property="sim_No" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="ip_Adress" property="ip_Adress" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="radio_No" property="radio_No" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="unixTime" property="unixTime" javaType="java.sql.Timestamp"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.br.entity.taskState.EquipmentInfo">
+        INSERT INTO ap_task_equipment_info(id,
+                                 app_Id,
+                                 account,
+                                 dev_No,
+                                 imei,
+                                 wifi_Mac,
+                                 login_Time,
+                                 logout_Time,
+                                 status,
+                                 guid,
+                                 sim_No,
+                                 ip_Adress,
+                                 radio_No,
+                                 unix_time)
+        VALUES (#{id},
+                #{app_Id},
+                #{account},
+                #{dev_No},
+                #{imei},
+                #{wifi_Mac},
+                #{login_Time},
+                #{logout_Time},
+                #{status},
+                #{guid},
+                #{sim_No},
+                #{ip_Adress},
+                #{radio_No},
+                #{unixTime})
+    </insert>
+    <select id="selectById" parameterType="java.lang.Integer" resultType="int">
+        SELECT COUNT(*) FROM ap_task_equipment_info WHERE ap_task_equipment_info.id =  #{id}
+    </select>
+</mapper>

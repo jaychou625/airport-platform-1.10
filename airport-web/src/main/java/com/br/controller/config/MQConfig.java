@@ -1,6 +1,8 @@
 package com.br.controller.config;
 
 import com.br.constant.MQConstant;
+import com.br.queue.AMQReceiver;
+import com.br.queue.XYXReceiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -22,20 +24,20 @@ public class MQConfig {
      *
      * @return AMQReceiver
      */
-   /* @Bean
-    public AMQReceiver amqReceiver() {
-        return new AMQReceiver();
-    }
-*/
+//    @Bean
+//    public AMQReceiver amqReceiver() {
+//        return new AMQReceiver();
+//    }
+
     /**
      * XYX消息接收
      *
      * @return XYXReceiver
      */
-    /*@Bean
+    @Bean
     public XYXReceiver xyxReceiver() {
         return new XYXReceiver();
-    }*/
+    }
 
 
     /**

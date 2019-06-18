@@ -1,5 +1,6 @@
 package com.br.controller.config;
 
+import com.br.airporttaskserver.handler.TaskApronDataHandler;
 import com.br.service.task.handler.ApronDataHandler;
 import com.br.service.task.handler.XYXDataHandler;
 import com.br.service.task.handler.XYXXmlVisitor;
@@ -44,5 +45,15 @@ public class TaskConfig {
     @Bean
     public XYXXmlVisitor xyxXmlVisitor() {
         return new XYXXmlVisitor();
+    }
+
+    /**
+     * 站坪任务设备信息关联处理类
+     *
+     * @return TaskApronDataHandler
+     */
+    @Bean
+    public TaskApronDataHandler taskApronDataHandler() {
+        return new TaskApronDataHandler();
     }
 }

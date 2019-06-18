@@ -21,6 +21,7 @@ public class RedisService {
     @Autowired
     private RedisTemplate redisTemplate;
 
+
     /**
      * 保存字段缓存到 Redis
      *
@@ -137,5 +138,6 @@ public class RedisService {
     public void setCacheExpire(String key, Long time) {
         this.redisTemplate.expire(key, time, TimeUnit.SECONDS);
     }
+
 
 }

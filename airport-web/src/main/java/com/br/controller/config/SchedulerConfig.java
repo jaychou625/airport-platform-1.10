@@ -1,5 +1,8 @@
 package com.br.controller.config;
 
+import com.br.airporttaskserver.handler.TaskApronDataHandler;
+import com.br.scheduler.ApronScheduler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -16,8 +19,9 @@ public class SchedulerConfig {
      *
      * @return ApronScheduler
      */
-   /* @Bean
+    @Bean
     public ApronScheduler apronScheduler() {
         return new ApronScheduler();
-    }*/
+    }
+
 }

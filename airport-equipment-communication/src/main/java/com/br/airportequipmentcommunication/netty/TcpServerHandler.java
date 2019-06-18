@@ -55,10 +55,10 @@ public class TcpServerHandler extends ChannelInboundHandlerAdapter {
             // 抛弃收到的数据
             ReferenceCountUtil.release(msg);
             // 清空buf字节容器
-//            if(in != null){
-//                in.release();
-//                in.clear();
-//            }
+            if(in != null){
+                in.release();
+                in.clear();
+            }
 
         }
     }
@@ -97,8 +97,10 @@ public class TcpServerHandler extends ChannelInboundHandlerAdapter {
 //            //处理雷达协议
 //            RadarProtocalService radarProtocalService = new RadarProtocalServiceImpl();
 //            ultrasonicRadarProtocal = radarProtocalService.getRadarInfo(tcpInfo);
+        }else if(tcpInfo.getInfoType().equals("02")){
+            //GPS协议
         }else{
-            //协议有误处理
+            //协议有误
         }
 
         //存储数据库操作
