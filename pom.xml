@@ -19,7 +19,7 @@
         <java.version>1.8</java.version>
         <kxml.version>0.0.1</kxml.version>
         <navengine.version>0.1.0</navengine.version>
-        <fastjson.version>1.2.47</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <netty-websokcet.version>0.7.3</netty-websokcet.version>
         <tlclient.version>0.0.1</tlclient.version>
         <tljms.version>0.0.1</tljms.version>
